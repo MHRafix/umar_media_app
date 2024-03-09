@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/news/views/news.dart';
+import 'package:ttp_app/screens/home/utils/dataModel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,8 +11,8 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.background,
           title: Row(
             children: [
-              Image.network(
-                "https://cdn-icons-png.flaticon.com/128/9001/9001104.png",
+              Image.asset(
+                "assets/images/logo.png",
                 scale: 3,
               ),
               const SizedBox(
@@ -33,72 +33,50 @@ class HomeScreen extends StatelessWidget {
           // ],
         ),
         body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 20,
-                  childAspectRatio: 9 / 9),
-              itemCount: 1200,
-              itemBuilder: (context, i) {
-                return TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const NewsScreen(),
-                        ),
-                      );
-                    },
-                    child: Padding(
-                        padding: const EdgeInsets.all(2),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Image.network(
-                              "https://cdn-icons-png.flaticon.com/128/4358/4358773.png",
-                              scale: 4,
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            const Text(
-                              "তাফসীর",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 14,
-                              ),
-                            )
-                          ],
-                        ))
+            padding: const EdgeInsets.all(15),
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 0,
+                    childAspectRatio: 9 / 9),
+                itemCount: products.length,
+                itemBuilder: (context, i) {
+                  return _moduleButton(context, products[i]);
+                })));
+  }
 
-                    // Container(
-                    //   // decoration: BoxDecoration(
-                    //   //     color: Colors.white,
-                    //   //     borderRadius: BorderRadius.circular(5),
-                    //   //     boxShadow: [
-                    //   //       BoxShadow(
-                    //   //           color: Colors.grey.shade300,
-                    //   //           blurRadius: 5,
-                    //   //           offset: const Offset(3, 3)),
-                    //   //     ]),
-
-                    //   child: Column(
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Padding(
-                    //         padding: const EdgeInsets.all(20),
-                    //         child: Image.network(
-                    //           "https://cdn-icons-png.flaticon.com/128/4358/4358773.png",
-                    //           scale: 2,
-                    //         ),
-                    //       ),
-                    //     ],
-                    //   ),
-                    // )
-
-                    );
-              }),
-        ));
+  // _moduleButton
+  TextButton _moduleButton(BuildContext context, dynamic product) {
+    return TextButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => product?.screen,
+            ),
+          );
+        },
+        child: Padding(
+            padding: const EdgeInsets.all(2),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  product?.icon,
+                  scale: 4,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  product?.title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                  ),
+                )
+              ],
+            )));
   }
 }
