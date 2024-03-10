@@ -7,6 +7,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.background,
           title: Row(
@@ -19,18 +20,20 @@ class HomeScreen extends StatelessWidget {
                 width: 5,
               ),
               const Text(
-                "Tehrik-i Taliban Pakistan",
+                "Taliban Pakistan",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
               )
             ],
           ),
-          // actions: [
-          //   Image.network(
-          //     "https://cdn-peanutsquare.b-cdn.net/wp-content/uploads/2020/08/client2.png",
-          //     scale: 3,
-          //   ),
-          //   IconButton(onPressed: () => {}, icon: const Icon(Icons.logout)),
-          // ],
+          actions: [
+            IconButton(
+                onPressed: () => {},
+                icon: const Icon(
+                  Icons.dark_mode_outlined,
+                  size: 28,
+                  color: Colors.black,
+                )),
+          ],
         ),
         body: Padding(
             padding: const EdgeInsets.all(15),
@@ -40,19 +43,19 @@ class HomeScreen extends StatelessWidget {
                     crossAxisSpacing: 5,
                     mainAxisSpacing: 0,
                     childAspectRatio: 9 / 9),
-                itemCount: products.length,
+                itemCount: homeMenu.length,
                 itemBuilder: (context, i) {
-                  return _moduleButton(context, products[i]);
+                  return _moduleButton(context, homeMenu[i]);
                 })));
   }
 
   // _moduleButton
-  TextButton _moduleButton(BuildContext context, dynamic product) {
+  TextButton _moduleButton(BuildContext context, dynamic menu) {
     return TextButton(
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => product?.screen,
+              builder: (context) => menu?.screen,
             ),
           );
         },
@@ -63,14 +66,14 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  product?.icon,
+                  menu?.icon,
                   scale: 4,
                 ),
                 const SizedBox(
                   height: 5,
                 ),
                 Text(
-                  product?.title,
+                  menu?.title,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
