@@ -136,3 +136,121 @@ List playlistData = [
       id: 2,
       items: 32),
 ];
+
+// playlist videos fake data
+class PlaylistVideoDataModel {
+  String name;
+  String thumbnail;
+  int id;
+  int views;
+  DateTime createdAt;
+
+  PlaylistVideoDataModel({
+    required this.name,
+    required this.thumbnail,
+    required this.id,
+    required this.views,
+    required this.createdAt,
+  });
+}
+
+List playlistVideos = [
+  PlaylistVideoDataModel(
+      name: "তাওহীদ এবং আকিদা",
+      thumbnail:
+          "https://i.ytimg.com/vi/SJKApCZACVE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC-cLhi4RVdHICUkYrcNGDb8z2euA",
+      id: 3,
+      views: 350,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "আল ওয়ালা ওয়াল বারা",
+      thumbnail:
+          "https://i.ytimg.com/vi/exfytj5RSyM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBl6iYHDK9GQsdRC_DvohzV52kVLg",
+      id: 4,
+      views: 5,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "জিহাদ ফি-সাবিলিল্লাহ",
+      thumbnail:
+          "https://i.ytimg.com/vi/KPevm4z05H8/hqdefault.jpg?sqp=-oaymwExCNACELwBSFryq4qpAyMIARUAAIhCGAHwAQH4Af4JgALQBYoCDAgAEAEYTiBlKGMwDw==&rs=AOn4CLDKf_wCL06L6gYJjhFtbldYH0Ywcw",
+      id: 5,
+      views: 5,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "সালাতের গুরুত্ব ",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 8,
+      views: 199,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "রমাদান এবং সিয়ামের গুরুত্ব",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 9,
+      views: 34,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "হজ্জের ফরজিয়াত",
+      thumbnail:
+          "https://i.ytimg.com/vi/436j1D2BV-c/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCqKeo0dPQ4IKLAGbZWM2k2OgmSVA",
+      id: 10,
+      views: 24,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "হিজরাতের গুরুত্ব",
+      thumbnail:
+          "https://i.ytimg.com/vi/w2GztA360I4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCTPA4fMAAQDFydu2D0lUol5hDg5Q",
+      id: 11,
+      views: 09,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "জিহাদ ফি-সাবিলিল্লাহ",
+      thumbnail:
+          "https://i.ytimg.com/vi/KPevm4z05H8/hqdefault.jpg?sqp=-oaymwExCNACELwBSFryq4qpAyMIARUAAIhCGAHwAQH4Af4JgALQBYoCDAgAEAEYTiBlKGMwDw==&rs=AOn4CLDKf_wCL06L6gYJjhFtbldYH0Ywcw",
+      id: 5,
+      views: 5,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "সালাতের গুরুত্ব ",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 8,
+      views: 199,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "রমাদান এবং সিয়ামের গুরুত্ব",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 9,
+      views: 34,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "ইসলামের ইতিহাস",
+      thumbnail:
+          "https://i.ytimg.com/vi/ehQms-uvkeM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCxqaIcwwsuclXj2AEj5aGe8WPnqg",
+      id: 12,
+      views: 232,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "জিহাদ ফি-সাবিলিল্লাহ",
+      thumbnail:
+          "https://i.ytimg.com/vi/KPevm4z05H8/hqdefault.jpg?sqp=-oaymwExCNACELwBSFryq4qpAyMIARUAAIhCGAHwAQH4Af4JgALQBYoCDAgAEAEYTiBlKGMwDw==&rs=AOn4CLDKf_wCL06L6gYJjhFtbldYH0Ywcw",
+      id: 5,
+      views: 5,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "সালাতের গুরুত্ব ",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 8,
+      views: 199,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+  PlaylistVideoDataModel(
+      name: "রমাদান এবং সিয়ামের গুরুত্ব",
+      thumbnail:
+          "https://i.ytimg.com/vi/2a14ThdSJFY/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLAiIfMix7iufLSc8jZKHyo4PFeORw",
+      id: 9,
+      views: 34,
+      createdAt: DateTime(2024, 9, 7, 14, 37)),
+];

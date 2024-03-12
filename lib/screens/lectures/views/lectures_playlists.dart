@@ -68,12 +68,13 @@ class LecturesPlaylistsScreen extends StatelessWidget {
               spreadRadius: 2.0,
             )
           ]),
-      height: 75,
+      height: 80,
       // color: Colors.grey[500],
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: InkWell(
+          borderRadius: BorderRadius.circular(20),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -85,9 +86,13 @@ class LecturesPlaylistsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(
-                playlist.image,
-                scale: 2.5,
+              FadeInImage.assetNetwork(
+                placeholder: 'assets/images/placeholder_image.png',
+                image: playlist.image,
+                width: 45,
+                height: 45,
+                fit: BoxFit.cover,
+                placeholderFit: BoxFit.contain,
               ),
               const SizedBox(
                 width: 15,
