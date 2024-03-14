@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ttp_app/screens/home/utils/dataModel.dart';
+import 'package:ttp_app/screens/lectures/views/play_video.dart';
 
 class LecturePlaylistVideosScreen extends StatelessWidget {
-  const LecturePlaylistVideosScreen({super.key});
+  LecturePlaylistVideosScreen({super.key});
+
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +44,30 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                 )),
           ],
         ),
-        body: ListView.builder(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            itemCount: playlistVideos.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _lectureVideoCard(context, playlistVideos[index]);
-            }));
+        body: SafeArea(
+          child: RefreshIndicator(
+            triggerMode: RefreshIndicatorTriggerMode.onEdge,
+            edgeOffset: 20,
+            displacement: 100,
+            key: _refreshIndicatorKey,
+            color: Colors.white,
+            backgroundColor: Colors.teal,
+            strokeWidth: 3.0,
+            onRefresh: () async {
+              // Replace this delay with the code to be executed during refresh
+              // and return a Future when code finishes execution.
+              return Future<void>.delayed(const Duration(seconds: 3));
+            },
+            // Pull from top to show refresh indicator.
+            child: ListView.builder(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                itemCount: playlistVideos.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _lectureVideoCard(context, playlistVideos[index]);
+                }),
+          ),
+        ));
   }
 
   Container _lectureVideoCard(
@@ -65,7 +87,7 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const LecturePlaylistVideosScreen(),
+                builder: (context) => const PlayVideoScreen(),
               ),
             );
           },

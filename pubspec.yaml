@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   intl: ^0.17.0
+  appinio_video_player: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/images/nasheed_1.mp4
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

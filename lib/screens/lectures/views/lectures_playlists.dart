@@ -78,7 +78,7 @@ class LecturesPlaylistsScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const LecturePlaylistVideosScreen(),
+                builder: (context) => LecturePlaylistVideosScreen(),
               ),
             );
           },
