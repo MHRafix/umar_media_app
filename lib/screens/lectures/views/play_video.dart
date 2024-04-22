@@ -30,7 +30,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   void initState() {
     super.initState();
 
-    _videoPlayerController = CachedVideoPlayerController.asset(
+    _videoPlayerController = CachedVideoPlayerController.network(
       longVideo,
     )..initialize().then((value) => setState(() {}));
     // _videoPlayerController2 = CachedVideoPlayerController.network(video240);
@@ -234,7 +234,8 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   }
 }
 
-String longVideo = "assets/images/nasheed_1.mp4";
+String longVideo =
+    "https://res.cloudinary.com/coderxone/video/upload/v1713246860/ad4zu5v95tjtpwnz9xbh.mp4";
 
 // String video720 =
 //     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";

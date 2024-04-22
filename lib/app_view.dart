@@ -1,46 +1,42 @@
+/*
+-----------------------------------------------------------------------------
+        Author: Md Maruf Ahmed Robin
+        Title: Lead Mobile App Developer
+        Email: marufrobin00@gmail.com
+        GitHub: https://github.com/marufrobin
+        Website: https://marufrobin.com
+-----------------------------------------------------------------------------
+  */
+
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/books/views/books.dart';
-import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
-import 'package:ttp_app/screens/history/views/history.dart';
-import 'package:ttp_app/screens/home/views/home_screen.dart';
-import 'package:ttp_app/screens/lectures/views/lecture_playlist_videos.dart';
-import 'package:ttp_app/screens/lectures/views/lectures_playlists.dart';
-import 'package:ttp_app/screens/lectures/views/play_video.dart';
-import 'package:ttp_app/screens/news/views/news.dart';
-import 'package:ttp_app/screens/others/views/others.dart';
-import 'package:ttp_app/screens/tafseer/views/tafseer.dart';
-import 'package:ttp_app/screens/talim/views/talim.dart';
-import 'package:ttp_app/screens/war/views/war.dart';
+import 'package:ttp_app/routes/app_route_configuration.dart';
+
+import 'app_theme/theme_data.dart';
+
+final appRouter = AppRouter();
+GlobalKey<NavigatorState> goRouteNavigatorStateKey =
+    GlobalKey<NavigatorState>();
 
 class MyAppView extends StatelessWidget {
   const MyAppView({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Food Delivery",
+    // SystemChrome.setPreferredOrientations(
+    //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //   statusBarColor: Colors.transparent,
+    //   statusBarBrightness: Brightness.light,
+    //   statusBarIconBrightness: Brightness.dark,
+    //   systemNavigationBarIconBrightness: Brightness.light,
+    // ));
+    return MaterialApp.router(
+      // key: goRouteNavigatorStateKey,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          colorScheme: ColorScheme.light(
-              background: Colors.grey.shade300,
-              onBackground: Colors.black,
-              primary: Colors.blue,
-              onPrimary: Colors.white)),
-      // home: const HomeScreen(),
-      routes: {
-        '/': (context) => const HomeScreen(),
-        '/news': (context) => const NewsScreen(),
-        '/lectures': (context) => const LecturesPlaylistsScreen(),
-        '/tafseer': (context) => const TafseerScreen(),
-        '/books': (context) => const BooksScreen(),
-        '/war': (context) => const WarScreen(),
-        '/history': (context) => const HistoryScreen(),
-        '/talim': (context) => const TalimScreen(),
-        '/fitnah': (context) => const FitnahScreen(),
-        '/others': (context) => const OthersScreen(),
-        '/playlistDetails:id': (context) => LecturePlaylistVideosScreen(),
-        '/play_video': (context) => const PlayVideoScreen(),
-      },
+      title: 'Pakistan',
+      theme: themeData(context),
+      routerConfig: appRouter.goRouter,
     );
   }
 }

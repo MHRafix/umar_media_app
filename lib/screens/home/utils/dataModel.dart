@@ -1,4 +1,4 @@
-import 'package:ttp_app/screens/books/views/books.dart';
+import 'package:ttp_app/screens/books/views/book_departments.dart';
 import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
 import 'package:ttp_app/screens/history/views/history.dart';
 import 'package:ttp_app/screens/lectures/views/lectures_playlists.dart';
