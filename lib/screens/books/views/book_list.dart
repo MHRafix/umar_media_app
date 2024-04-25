@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class BookListScreen extends StatelessWidget {
   const BookListScreen({super.key});
@@ -67,8 +68,13 @@ class BookListScreen extends StatelessWidget {
             }
             final data = result.data?['books'];
 
-            return result.isLoading
-                ? const Text("Loading...")
+            return !result.isLoading
+                ? ListView.builder(
+                    padding: const EdgeInsets.all(10),
+                    itemCount: 12,
+                    itemBuilder: (BuildContext context, int index) {
+                      return bookListSkeletons();
+                    })
                 : ListView.builder(
                     clipBehavior: Clip.hardEdge,
                     padding:
@@ -84,70 +90,7 @@ class BookListScreen extends StatelessWidget {
         ));
   }
 
-  Container _bookCard(BuildContext context, Map<String, dynamic> book) {
-    return Container(
-      // decoration: BoxDecoration(
-      //     borderRadius: BorderRadius.circular(10),
-      //     color: Colors.white70,
-      //     boxShadow: [
-      //       BoxShadow(
-      //         color: Colors.grey.shade200,
-      //         offset: const Offset(
-      //           1.0,
-      //           1.0,
-      //         ),
-      //         blurRadius: 10.0,
-      //         spreadRadius: 2.0,
-      //       )
-      //     ]),
-      // color: Colors.grey[500],
-      margin: const EdgeInsets.symmetric(vertical: 0),
-      child: InkWell(
-        // borderRadius: BorderRadius.circular(20),
-        // onTap: () {
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (context) => const BookListScreen(),
-        //     ),
-        //   );
-        // },
-        child: Column(
-          children: [
-            FadeInImage.assetNetwork(
-              placeholder: 'assets/images/placeholder_image.png',
-              image: book["cover"],
-              width: 150,
-              height: 150,
-              fit: BoxFit.cover,
-              placeholderFit: BoxFit.contain,
-            ),
-            const SizedBox(
-              width: 15,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "${book["name"]}",
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  book["writer"],
-                  style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.black45),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+// book card
   Container _booksCard(BuildContext context, Map<String, dynamic> book) {
     // print(book);
     return Container(
@@ -270,42 +213,37 @@ class BookListScreen extends StatelessWidget {
       ),
     );
   }
+
+// book department skeleton
+  Widget bookListSkeletons() => Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white70,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                offset: const Offset(
+                  1.0,
+                  1.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              )
+            ]),
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        height: 80,
+        alignment: Alignment.centerLeft,
+        child: const ListTile(
+          leading: ShimmerWidget.rectangular(
+            height: 120,
+            width: 80,
+            // shapeBorder:
+            //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+          title: ShimmerWidget.rectangular(height: 16),
+          subtitle: ShimmerWidget.rectangular(
+            height: 12,
+          ),
+        ),
+      );
 }
-//  PopupMenuButton<int>(
-//                 itemBuilder: (context) => [
-//                   // popupmenu item 1
-//                   const PopupMenuItem(
-//                     value: 1,
-//                     // row has two child icon and text.
-//                     child: Row(
-//                       children: [
-//                         Icon(Icons.library_books_outlined),
-//                         SizedBox(
-//                           // sized box with width 10
-//                           width: 10,
-//                         ),
-//                         Text("Read the book")
-//                       ],
-//                     ),
-//                   ),
-//                   // popupmenu item 2
-//                   const PopupMenuItem(
-//                     value: 2,
-//                     // row has two child icon and text
-//                     child: Row(
-//                       children: [
-//                         Icon(Icons.download),
-//                         SizedBox(
-//                           // sized box with width 10
-//                           width: 10,
-//                         ),
-//                         Text("Download PDF")
-//                       ],
-//                     ),
-//                   ),
-//                 ],
-//                 offset: const Offset(-10, 45),
-//                 color: Colors.grey[50],
-//                 elevation: 2,
-//               ),
-            

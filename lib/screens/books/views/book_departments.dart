@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ttp_app/screens/books/views/book_list.dart';
+import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class BooksScreen extends StatelessWidget {
   const BooksScreen({super.key});
@@ -64,7 +65,12 @@ class BooksScreen extends StatelessWidget {
             final data = result.data?['bookDepartments'];
 
             return result.isLoading
-                ? const Text("Loading...")
+                ? ListView.builder(
+                    padding: const EdgeInsets.all(10),
+                    itemCount: 12,
+                    itemBuilder: (BuildContext context, int index) {
+                      return bookDepartmentSkeletons();
+                    })
                 : ListView.builder(
                     padding: const EdgeInsets.all(10),
                     itemCount: data?["nodes"].length,
@@ -77,6 +83,7 @@ class BooksScreen extends StatelessWidget {
         ));
   }
 
+// bool department card
   Container _bookDepartmentCard(
       BuildContext context, Map<String, dynamic> department) {
     print(department);
@@ -150,4 +157,37 @@ class BooksScreen extends StatelessWidget {
       ),
     );
   }
+
+// book department skeleton
+  Widget bookDepartmentSkeletons() => Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white70,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade200,
+                offset: const Offset(
+                  1.0,
+                  1.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              )
+            ]),
+        margin: const EdgeInsets.symmetric(vertical: 5),
+        height: 80,
+        alignment: Alignment.centerLeft,
+        child: const ListTile(
+          leading: ShimmerWidget.circular(
+            height: 64,
+            width: 64,
+            // shapeBorder:
+            //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+          title: ShimmerWidget.rectangular(height: 16),
+          subtitle: ShimmerWidget.rectangular(
+            height: 12,
+          ),
+        ),
+      );
 }
