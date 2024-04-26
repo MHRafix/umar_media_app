@@ -3,10 +3,15 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class BookListScreen extends StatelessWidget {
-  const BookListScreen({super.key});
+  final String id;
+  final String name;
+  const BookListScreen({super.key, required this.id, required this.name});
+
+  // ScreenB({required });
 
   @override
   Widget build(BuildContext context) {
+    print(context);
     String bookListByDepartmentQuery = """query Books_By_Departments_Query{
   books{
     nodes{
@@ -31,9 +36,9 @@ class BookListScreen extends StatelessWidget {
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
-          title: const Text(
-            "Book List",
-            style: TextStyle(
+          title: Text(
+            name,
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 22,
@@ -68,7 +73,7 @@ class BookListScreen extends StatelessWidget {
             }
             final data = result.data?['books'];
 
-            return !result.isLoading
+            return result.isLoading
                 ? ListView.builder(
                     padding: const EdgeInsets.all(10),
                     itemCount: 12,
@@ -92,27 +97,16 @@ class BookListScreen extends StatelessWidget {
 
 // book card
   Container _booksCard(BuildContext context, Map<String, dynamic> book) {
-    // print(book);
     return Container(
-      // decoration: BoxDecoration(
-      // borderRadius: BorderRadius.circular(20),
-      // color: Colors.white70,
-      // boxShadow: [
-      //   BoxShadow(
-      //     color: Colors.grey.shade200,
-      //     offset: const Offset(
-      //       1.0,
-      //       1.0,
-      //     ),
-      //     blurRadius: 10.0,
-      //     spreadRadius: 2.0,
-      //   )
-      // ]),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey[500]!, width: .1),
+        color: Colors.white70,
+      ),
       height: 110,
       // color: Colors.grey[500],
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
         child: InkWell(
           // borderRadius: BorderRadius.circular(20),
           onTap: () {
@@ -153,7 +147,7 @@ class BookListScreen extends StatelessWidget {
                               overflow: TextOverflow.ellipsis),
                         ),
                         Text(
-                          "${book['writer']}",
+                          "${book['writer'].substring(0, 20)}",
                           style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
@@ -217,7 +211,7 @@ class BookListScreen extends StatelessWidget {
 // book department skeleton
   Widget bookListSkeletons() => Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(0),
             color: Colors.white70,
             boxShadow: [
               BoxShadow(
@@ -231,19 +225,22 @@ class BookListScreen extends StatelessWidget {
               )
             ]),
         margin: const EdgeInsets.symmetric(vertical: 5),
-        height: 80,
-        alignment: Alignment.centerLeft,
+        // height: 80,
+        alignment: Alignment.center,
         child: const ListTile(
           leading: ShimmerWidget.rectangular(
-            height: 120,
-            width: 80,
+            height: 80,
+            width: 60,
             // shapeBorder:
             //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          title: ShimmerWidget.rectangular(height: 16),
-          subtitle: ShimmerWidget.rectangular(
-            height: 12,
+          title: ShimmerWidget.rectangular(
+            height: 18,
           ),
+          subtitle: ShimmerWidget.rectangular(
+            height: 14,
+          ),
+          trailing: ShimmerWidget.circular(height: 45, width: 45),
         ),
       );
 }

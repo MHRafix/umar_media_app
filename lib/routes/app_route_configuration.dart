@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ttp_app/app_view.dart';
 import 'package:ttp_app/routes/app_route_constant.dart';
-import 'package:ttp_app/screens/books/views/book_list.dart';
 import 'package:ttp_app/screens/books/views/book_departments.dart';
+import 'package:ttp_app/screens/books/views/book_list.dart';
 import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
 import 'package:ttp_app/screens/history/views/history.dart';
 import 'package:ttp_app/screens/home/views/home_screen.dart';
@@ -54,8 +54,11 @@ class AppRouter {
         GoRoute(
           path: "/book_lists",
           name: AppRouteConstants.kBookListScreen,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: BookListScreen()),
+          pageBuilder: (context, state) => const MaterialPage(
+              child: BookListScreen(
+            id: "asas",
+            name: "asgas",
+          )),
         ),
         GoRoute(
           path: "/war",

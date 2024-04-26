@@ -86,7 +86,7 @@ class BooksScreen extends StatelessWidget {
 // bool department card
   Container _bookDepartmentCard(
       BuildContext context, Map<String, dynamic> department) {
-    print(department);
+    // print(department);
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
@@ -112,7 +112,8 @@ class BooksScreen extends StatelessWidget {
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const BookListScreen(),
+                builder: (context) => BookListScreen(
+                    id: department['_id'], name: department["name"]),
               ),
             );
           },
