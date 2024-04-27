@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ttp_app/screens/books/views/book_list.dart';
+import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
 import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class BooksScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class BooksScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[100],
+          backgroundColor: Colors.grey[300],
           actions: [
             IconButton(
                 onPressed: () => {},
@@ -71,13 +72,15 @@ class BooksScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return bookDepartmentSkeletons();
                     })
-                : ListView.builder(
-                    padding: const EdgeInsets.all(10),
-                    itemCount: data?["nodes"].length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return _bookDepartmentCard(
-                          context, data?["nodes"][index]);
-                    });
+                : data['nodes']?.length == 0 && !result.isLoading
+                    ? const EmptyState(label: "No books found")
+                    : ListView.builder(
+                        padding: const EdgeInsets.all(10),
+                        itemCount: data?["nodes"].length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return _bookDepartmentCard(
+                              context, data?["nodes"][index]);
+                        });
             // }
           },
         ));

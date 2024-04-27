@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
 import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class BookListScreen extends StatelessWidget {
@@ -12,8 +13,9 @@ class BookListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(context);
-    String bookListByDepartmentQuery = """query Books_By_Departments_Query{
-  books{
+    String bookListByDepartmentQuery =
+        """query Books_By_Departments_Query(\$input: BookListQueryDto){
+  books(input: \$input){
     nodes{
       _id
       name
@@ -50,7 +52,7 @@ class BookListScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[100],
+          backgroundColor: Colors.grey[300],
           actions: [
             IconButton(
                 onPressed: () => {},
@@ -62,7 +64,13 @@ class BookListScreen extends StatelessWidget {
           ],
         ),
         body: Query(
-          options: QueryOptions(document: gql(bookListByDepartmentQuery)),
+          options: QueryOptions(
+              document: gql(bookListByDepartmentQuery),
+              variables: {
+                "input": {
+                  "where": {"key": "department", "operator": "eq", "value": id}
+                }
+              }),
           builder: (
             result, {
             FetchMore? fetchMore,
@@ -71,6 +79,7 @@ class BookListScreen extends StatelessWidget {
             if (result.hasException) {
               print("Query Result: ${result.hasException}");
             }
+
             final data = result.data?['books'];
 
             return result.isLoading
@@ -80,15 +89,18 @@ class BookListScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return bookListSkeletons();
                     })
-                : ListView.builder(
-                    clipBehavior: Clip.hardEdge,
-                    padding:
-                        const EdgeInsets.all(5.0), // padding around the grid
-                    itemCount: data?["nodes"].length, // total number of items
-                    itemBuilder: (context, index) {
-                      return _booksCard(context, data?["nodes"][index]);
-                    },
-                  );
+                : data['nodes']?.length == 0 && !result.isLoading
+                    ? const EmptyState(label: "No books found")
+                    : ListView.builder(
+                        clipBehavior: Clip.hardEdge,
+                        padding: const EdgeInsets.all(
+                            5.0), // padding around the grid
+                        itemCount:
+                            data?["nodes"].length, // total number of items
+                        itemBuilder: (context, index) {
+                          return _booksCard(context, data?["nodes"][index]);
+                        },
+                      );
 
             // }
           },
@@ -106,7 +118,7 @@ class BookListScreen extends StatelessWidget {
       // color: Colors.grey[500],
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+        padding: const EdgeInsets.all(0),
         child: InkWell(
           // borderRadius: BorderRadius.circular(20),
           onTap: () {
@@ -193,9 +205,10 @@ class BookListScreen extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {},
-                      style: IconButton.styleFrom(backgroundColor: Colors.grey),
+                      style: IconButton.styleFrom(
+                          backgroundColor: Colors.grey[400]),
                       icon: const Icon(
-                        Icons.download_sharp,
+                        Icons.download_rounded,
                         color: Colors.white,
                         size: 22,
                       ),
