@@ -28,7 +28,7 @@ class BooksScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back),
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
@@ -72,8 +72,11 @@ class BooksScreen extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return bookDepartmentSkeletons();
                     })
-                : data['nodes']?.length == 0 && !result.isLoading
-                    ? const EmptyState(label: "No books found")
+                : data['nodes']?.length == 0 && result.isLoading
+                    ? const EmptyState(
+                        label: "I am empty :(",
+                        tagline: "You have no department",
+                      )
                     : ListView.builder(
                         padding: const EdgeInsets.all(10),
                         itemCount: data?["nodes"].length,

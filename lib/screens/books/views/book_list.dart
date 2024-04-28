@@ -34,7 +34,7 @@ class BookListScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back),
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
@@ -90,7 +90,8 @@ class BookListScreen extends StatelessWidget {
                       return bookListSkeletons();
                     })
                 : data['nodes']?.length == 0 && !result.isLoading
-                    ? const EmptyState(label: "No books found")
+                    ? const EmptyState(
+                        label: "I am empty :(", tagline: "You have no books")
                     : ListView.builder(
                         clipBehavior: Clip.hardEdge,
                         padding: const EdgeInsets.all(
