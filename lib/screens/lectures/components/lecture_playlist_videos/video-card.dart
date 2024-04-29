@@ -8,23 +8,18 @@ class VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formatter = DateFormat('yMd').format(video['createdAt']);
+    String formatter =
+        DateFormat('yMd').format(DateTime.parse(video['createdAt']));
 
     return Container(
-      // decoration: const BoxDecoration(
-      // borderRadius: BorderRadius.circular(20),
-      // color: Colors.white70,
-      // ),
-      // height: 85,
-      // color: Colors.grey[500],
-      margin: const EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 0),
       child: Padding(
-        padding: const EdgeInsets.all(3.0),
+        padding: const EdgeInsets.all(0.0),
         child: InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => const PlayVideoScreen(),
+                builder: (context) => PlayVideoScreen(id: video["_id"]),
               ),
             );
           },

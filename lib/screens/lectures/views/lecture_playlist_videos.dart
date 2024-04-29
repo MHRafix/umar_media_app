@@ -15,7 +15,20 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // videos query
-    String videosQuery = """----""";
+    String videosQuery =
+        """query Get_Lectures_Videos(\$input: LecturesVideosQueryWithPagination!){
+  lecturesVideos(input: \$input){
+  nodes{
+    _id
+    title
+    lecturer
+    video
+    thumbnail
+    likeCount
+    viewsCount
+    createdAt
+  }}
+}""";
 
     return Scaffold(
         backgroundColor: Colors.grey[100],
@@ -24,7 +37,7 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back),
             //replace with our own icon data.
           ),
           title: Text(
@@ -39,7 +52,7 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[100],
+          backgroundColor: Colors.grey[300],
           actions: [
             IconButton(
                 onPressed: () => {},
@@ -80,16 +93,15 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                           })
                       : RefreshIndicator(
                           triggerMode: RefreshIndicatorTriggerMode.onEdge,
-                          edgeOffset: 20,
-                          displacement: 100,
+                          edgeOffset: 0,
+                          displacement: 30,
                           key: _refreshIndicatorKey,
                           color: Colors.orange,
                           backgroundColor: Colors.black,
                           strokeWidth: 3.0,
                           onRefresh: () async {
-                            // refetch after refresh
+                            // refetch query after refresh
                             refetch!();
-
                             return Future<void>.delayed(
                                 const Duration(seconds: 3));
                           },

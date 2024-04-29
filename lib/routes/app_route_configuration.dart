@@ -101,8 +101,10 @@ class AppRouter {
         GoRoute(
           path: "/play_video",
           name: AppRouteConstants.kPlayVideoScreen,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: PlayVideoScreen()),
+          pageBuilder: (context, state) => const MaterialPage(
+              child: PlayVideoScreen(
+            id: "",
+          )),
         ),
       ]);
 }

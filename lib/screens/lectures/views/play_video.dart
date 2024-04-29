@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:ttp_app/screens/home/utils/dataModel.dart';
 
 class PlayVideoScreen extends StatefulWidget {
-  const PlayVideoScreen({Key? key}) : super(key: key);
+  final String id;
+  const PlayVideoScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   State<PlayVideoScreen> createState() => _PlayVideoScreenState();
@@ -61,37 +62,37 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-          //replace with our own icon data.
-        ),
-        title: const Text(
-          "তাওহীদ এবং আকিদা",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-        titleSpacing: 00.0,
-        toolbarHeight: 60.2,
-        toolbarOpacity: .9,
-        elevation: 0.00,
-        backgroundColor: Colors.grey[100],
-        actions: [
-          IconButton(
-              onPressed: () => {},
-              icon: const Icon(
-                Icons.dark_mode_outlined,
-                size: 28,
-                color: Colors.black,
-              )),
-        ],
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //     icon: const Icon(Icons.arrow_back_ios),
+      //     //replace with our own icon data.
+      //   ),
+      //   title: const Text(
+      //     "তাওহীদ এবং আকিদা",
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontWeight: FontWeight.bold,
+      //       fontSize: 22,
+      //     ),
+      //   ),
+      //   titleSpacing: 00.0,
+      //   toolbarHeight: 60.2,
+      //   toolbarOpacity: .9,
+      //   elevation: 0.00,
+      //   backgroundColor: Colors.grey[100],
+      //   actions: [
+      //     IconButton(
+      //         onPressed: () => {},
+      //         icon: const Icon(
+      //           Icons.dark_mode_outlined,
+      //           size: 28,
+      //           color: Colors.black,
+      //         )),
+      //   ],
+      // ),
       body: SafeArea(
           child: Column(
         children: <Widget>[
@@ -166,11 +167,11 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
         padding: const EdgeInsets.all(3.0),
         child: InkWell(
           onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => const PlayVideoScreen(),
-              ),
-            );
+            // Navigator.of(context).push(
+            //   MaterialPageRoute(
+            //     builder: (context) => const PlayVideoScreen(),
+            //   ),
+            // );
           },
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
