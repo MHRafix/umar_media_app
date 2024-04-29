@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/home/utils/dataModel.dart';
-import 'package:ttp_app/screens/lectures/views/lecture_playlist_videos.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:ttp_app/screens/lectures/components/lecture_playlist/playlist-card.dart';
+import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
+import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 
 class LecturesPlaylistsScreen extends StatelessWidget {
-  const LecturesPlaylistsScreen({super.key});
+  LecturesPlaylistsScreen({super.key});
+
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
+    String lecturesPlaylistsQuery =
+        """query Get_Lectures_Playlist(\$input: LecturesPlaylistQueryWithPagination) {
+  lecturesPlaylists(input: \$input) {
+    nodes {
+      _id
+      name
+      iconImage
+      lecturesCount
+      createdAt
+    }
+  }
+}
+""";
+
     return Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -43,84 +62,49 @@ class LecturesPlaylistsScreen extends StatelessWidget {
                 )),
           ],
         ),
-        body: ListView.builder(
-            padding: const EdgeInsets.all(10),
-            itemCount: playlistData.length,
-            itemBuilder: (BuildContext context, int index) {
-              return _lecturePlaylistCard(context, playlistData[index]);
-            }));
-  }
+        body: Query(
+          options: QueryOptions(document: gql(lecturesPlaylistsQuery)),
+          builder: (result, {FetchMore? fetchMore, VoidCallback? refetch}) {
+            if (result.hasException) {
+              print("Query Result: ${result.hasException}");
+            }
+            final data = result.data?['lecturesPlaylists'];
 
-  Container _lecturePlaylistCard(
-      BuildContext context, PlaylistDataModel playlist) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white70,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade200,
-              offset: const Offset(
-                1.0,
-                1.0,
-              ),
-              blurRadius: 10.0,
-              spreadRadius: 2.0,
-            )
-          ]),
-      height: 80,
-      // color: Colors.grey[500],
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(20),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => LecturePlaylistVideosScreen(),
-              ),
-            );
+            return result.isLoading
+                ? ListView.builder(
+                    padding: const EdgeInsets.all(10),
+                    itemCount: 12,
+                    itemBuilder: (BuildContext context, int index) {
+                      return const CardCommonSkeleton();
+                    })
+                : RefreshIndicator(
+                    triggerMode: RefreshIndicatorTriggerMode.onEdge,
+                    edgeOffset: 20,
+                    displacement: 40,
+                    key: _refreshIndicatorKey,
+                    color: Colors.orange,
+                    backgroundColor: Colors.black,
+                    strokeWidth: 3.0,
+                    onRefresh: () async {
+                      // print("refreshed...");
+                      refetch!();
+                      return Future<void>.delayed(const Duration(seconds: 3));
+                    },
+                    child: data['nodes']?.length == 0 && !result.isLoading
+                        ? const EmptyState(
+                            label: "I am empty :(",
+                            tagline: "You have no playlist",
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.all(10),
+                            itemCount: data['nodes'].length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return PlaylistCard(
+                                playlist: data['nodes'][index],
+                              );
+                            }),
+                  );
           },
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              FadeInImage.assetNetwork(
-                placeholder: 'assets/images/placeholder_image.png',
-                image: playlist.image,
-                width: 45,
-                height: 45,
-                fit: BoxFit.cover,
-                placeholderFit: BoxFit.contain,
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              Row(children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      playlist.name,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      "${playlist.items} lectures",
-                      style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black45),
-                    ),
-                  ],
-                ),
-              ])
-            ],
-          ),
-        ),
-      ),
-    );
+        ));
   }
 }

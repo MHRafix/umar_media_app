@@ -26,13 +26,11 @@ List homeMenu = [
       icon: "assets/images/tafseer.png",
       screen: const TafseerScreen()),
   HomeMenuData(
-      title: "বই সমূহ",
-      icon: "assets/images/books.png",
-      screen: const BooksScreen()),
+      title: "বই সমূহ", icon: "assets/images/books.png", screen: BooksScreen()),
   HomeMenuData(
       title: "বক্তব্য সিরিজ",
       icon: "assets/images/lecture.png",
-      screen: const LecturesPlaylistsScreen()),
+      screen: LecturesPlaylistsScreen()),
   HomeMenuData(
       title: "গেরিলা যুদ্ধ",
       icon: "assets/images/war.png",

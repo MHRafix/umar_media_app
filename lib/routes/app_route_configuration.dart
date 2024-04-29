@@ -37,7 +37,7 @@ class AppRouter {
           path: "/lectures",
           name: AppRouteConstants.kLecturesPlaylistsScreen,
           pageBuilder: (context, state) =>
-              const MaterialPage(child: LecturesPlaylistsScreen()),
+              MaterialPage(child: LecturesPlaylistsScreen()),
         ),
         GoRoute(
           path: "/tafseer",
@@ -48,16 +48,15 @@ class AppRouter {
         GoRoute(
           path: "/books",
           name: AppRouteConstants.kBooksScreen,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: BooksScreen()),
+          pageBuilder: (context, state) => MaterialPage(child: BooksScreen()),
         ),
         GoRoute(
           path: "/book_lists",
           name: AppRouteConstants.kBookListScreen,
-          pageBuilder: (context, state) => const MaterialPage(
+          pageBuilder: (context, state) => MaterialPage(
               child: BookListScreen(
-            id: "asas",
-            name: "asgas",
+            id: "",
+            name: "",
           )),
         ),
         GoRoute(
@@ -93,8 +92,11 @@ class AppRouter {
         GoRoute(
           path: "/playlistDetails",
           name: AppRouteConstants.kLecturePlaylistVideosScreen,
-          pageBuilder: (context, state) =>
-              MaterialPage(child: LecturePlaylistVideosScreen()),
+          pageBuilder: (context, state) => MaterialPage(
+              child: LecturePlaylistVideosScreen(
+            id: "",
+            name: "",
+          )),
         ),
         GoRoute(
           path: "/play_video",
