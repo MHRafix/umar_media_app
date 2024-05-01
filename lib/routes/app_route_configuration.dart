@@ -104,6 +104,7 @@ class AppRouter {
           pageBuilder: (context, state) => const MaterialPage(
               child: PlayVideoScreen(
             id: "",
+            videoSrc: "",
           )),
         ),
       ]);

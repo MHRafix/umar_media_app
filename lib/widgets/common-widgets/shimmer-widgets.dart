@@ -13,6 +13,13 @@ class ShimmerWidget extends StatelessWidget {
   }) : shapeBorder = const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)));
 
+  const ShimmerWidget.videoCard({
+    super.key,
+    this.width = double.infinity,
+    required this.height,
+  }) : shapeBorder = const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(0)));
+
   // const ShimmerWidget.square({
   //   super.key,
   //   this.width = double.infinity,

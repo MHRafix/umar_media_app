@@ -51,7 +51,7 @@ class LecturesPlaylistsScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[100],
+          backgroundColor: Colors.grey[300],
           actions: [
             IconButton(
                 onPressed: () => {},

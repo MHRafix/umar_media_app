@@ -1,17 +1,26 @@
 import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:ttp_app/screens/home/utils/dataModel.dart';
+import 'package:ttp_app/widgets/common-widgets/skeletons/video-card-skeleton.dart';
 
 class PlayVideoScreen extends StatefulWidget {
   final String id;
-  const PlayVideoScreen({Key? key, required this.id}) : super(key: key);
+  final String videoSrc;
+  const PlayVideoScreen({Key? key, required this.id, required this.videoSrc})
+      : super(key: key);
 
   @override
-  State<PlayVideoScreen> createState() => _PlayVideoScreenState();
+  State<PlayVideoScreen> createState() =>
+      _PlayVideoScreenState(id: id, videoSrc: videoSrc);
 }
 
 class _PlayVideoScreenState extends State<PlayVideoScreen> {
+  final String id;
+  final String videoSrc;
+  _PlayVideoScreenState({required this.id, required this.videoSrc});
+
   late CachedVideoPlayerController _videoPlayerController,
       _videoPlayerController2,
       _videoPlayerController3;
@@ -22,17 +31,17 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   final CustomVideoPlayerSettings _customVideoPlayerSettings =
       const CustomVideoPlayerSettings(showSeekButtons: true);
 
-  final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings =
-      CustomVideoPlayerWebSettings(
-    src: longVideo,
-  );
+  // final CustomVideoPlayerWebSettings _customVideoPlayerWebSettings =
+  //     CustomVideoPlayerWebSettings(
+  //   src: videoSrc,
+  // );
 
   @override
   void initState() {
     super.initState();
 
     _videoPlayerController = CachedVideoPlayerController.network(
-      longVideo,
+      videoSrc,
     )..initialize().then((value) => setState(() {}));
     // _videoPlayerController2 = CachedVideoPlayerController.network(video240);
     // _videoPlayerController3 = CachedVideoPlayerController.network(video480);
@@ -47,9 +56,9 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
       },
     );
 
-    _customVideoPlayerWebController = CustomVideoPlayerWebController(
-      webVideoPlayerSettings: _customVideoPlayerWebSettings,
-    );
+    // _customVideoPlayerWebController = CustomVideoPlayerWebController(
+    //   webVideoPlayerSettings: _customVideoPlayerWebSettings,
+    // );
   }
 
   @override
@@ -60,101 +69,113 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String lectureVideoQuery =
+        """query Get_Lectures_Video(\$input: CommonMatchInput!){
+  lecturesVideo(input: \$input){
+    _id
+    title
+    lecturer
+    video
+    thumbnail
+    likeCount
+    viewsCount
+    createdAt
+  }
+}""";
+
     return Scaffold(
       backgroundColor: Colors.grey[100],
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //     icon: const Icon(Icons.arrow_back_ios),
-      //     //replace with our own icon data.
-      //   ),
-      //   title: const Text(
-      //     "তাওহীদ এবং আকিদা",
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontWeight: FontWeight.bold,
-      //       fontSize: 22,
-      //     ),
-      //   ),
-      //   titleSpacing: 00.0,
-      //   toolbarHeight: 60.2,
-      //   toolbarOpacity: .9,
-      //   elevation: 0.00,
-      //   backgroundColor: Colors.grey[100],
-      //   actions: [
-      //     IconButton(
-      //         onPressed: () => {},
-      //         icon: const Icon(
-      //           Icons.dark_mode_outlined,
-      //           size: 28,
-      //           color: Colors.black,
-      //         )),
-      //   ],
-      // ),
       body: SafeArea(
-          child: Column(
-        children: <Widget>[
-          CustomVideoPlayer(
-            customVideoPlayerController: _customVideoPlayerController,
-          ),
-          Container(
-            decoration: BoxDecoration(color: Colors.grey.shade200),
-            child: const Padding(
-              padding: EdgeInsets.all(10),
-              child: InkWell(
-                child: Column(
-                  children: [
-                    Text(
-                      "আকিদা সিরিজ - ৪র্থ পর্ব - তাওহিদুর রুবুবিয়্যাহ | Shaikh Tamim Al Adnani",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Flex(
-                      direction: Axis.horizontal,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "23.5k views",
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black45),
-                        ),
-                        SizedBox(
-                          width: 7,
-                        ),
-                        Text(
-                          "2d ago",
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black45),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-              child: ListView.builder(
-                  // shrinkWrap: true,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  itemCount: playlistVideos.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _lectureVideoCard(context, playlistVideos[index]);
-                  }))
-        ],
-      )),
+          child: Query(
+              options:
+                  QueryOptions(document: gql(lectureVideoQuery), variables: {
+                "input": {"key": "_id", "operator": "eq", "value": id}
+              }),
+              builder: (result, {FetchMore? fetchMore, VoidCallback? refetch}) {
+                if (result.hasException) {
+                  print("Query Result: ${result.hasException}");
+                }
+                final data = result.data?['lecturesVideo'];
+
+                return result.isLoading
+                    ? const VideoCardSkeleton()
+                    : Column(
+                        children: <Widget>[
+                          CustomVideoPlayer(
+                            customVideoPlayerController:
+                                _customVideoPlayerController,
+                          ),
+                          Container(
+                              decoration:
+                                  BoxDecoration(color: Colors.grey.shade200),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10),
+                                child: InkWell(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        data['title'],
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        data['lecturer'],
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Flex(
+                                        direction: Axis.horizontal,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "${data['viewsCount']} views",
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black45),
+                                          ),
+                                          const SizedBox(
+                                            width: 7,
+                                          ),
+                                          Text(
+                                            DateFormat('yyyy-MM-dd').format(
+                                                DateTime.parse(
+                                                    data['createdAt'])),
+                                            style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black45),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )),
+                          Expanded(
+                              child: ListView.builder(
+                                  // shrinkWrap: true,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                                  itemCount: playlistVideos.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return _lectureVideoCard(
+                                        context, playlistVideos[index]);
+                                  }))
+                        ],
+                      );
+              })),
     );
   }
 
@@ -234,15 +255,3 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
     );
   }
 }
-
-String longVideo =
-    "https://res.cloudinary.com/coderxone/video/upload/v1713246860/ad4zu5v95tjtpwnz9xbh.mp4";
-
-// String video720 =
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
-
-// String video480 =
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";
-
-// String video240 =
-//     "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4";

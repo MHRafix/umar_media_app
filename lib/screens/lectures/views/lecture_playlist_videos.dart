@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:ttp_app/screens/lectures/components/lecture_playlist_videos/video-card.dart';
+import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
 import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 
 class LecturePlaylistVideosScreen extends StatelessWidget {
@@ -106,13 +107,19 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                                 const Duration(seconds: 3));
                           },
                           // Pull from top to show refresh indicator.
-                          child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              itemCount: data['nodes'].length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return VideoCard(video: data['nodes'][index]);
-                              }),
+                          child: data['nodes']?.length == 0 && !result.isLoading
+                              ? const EmptyState(
+                                  label: "I am empty :(",
+                                  tagline: "You have no lecture")
+                              : ListView.builder(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 0),
+                                  itemCount: data['nodes'].length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return VideoCard(
+                                        video: data['nodes'][index]);
+                                  }),
                         );
                 })));
   }
