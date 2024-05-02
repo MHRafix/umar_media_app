@@ -3,7 +3,6 @@ import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
 import 'package:ttp_app/screens/history/views/history.dart';
 import 'package:ttp_app/screens/lectures/views/lectures_playlists.dart';
 import 'package:ttp_app/screens/news/views/news.dart';
-import 'package:ttp_app/screens/others/views/others.dart';
 import 'package:ttp_app/screens/tafseer/views/tafseer.dart';
 import 'package:ttp_app/screens/talim/views/talim.dart';
 import 'package:ttp_app/screens/war/views/war.dart';
@@ -47,10 +46,10 @@ List homeMenu = [
       title: "ফিতনা",
       icon: "assets/images/fitnah.png",
       screen: const FitnahScreen()),
-  HomeMenuData(
-      title: "অন্যান্য",
-      icon: "assets/images/others.png",
-      screen: const OthersScreen()),
+  // HomeMenuData(
+  //     title: "অন্যান্য",
+  //     icon: "assets/images/others.png",
+  //     screen: const OthersScreen()),
 ];
 
 // playlist fake data

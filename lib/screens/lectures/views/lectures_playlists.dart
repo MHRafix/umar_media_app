@@ -33,7 +33,7 @@ class LecturesPlaylistsScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back),
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
@@ -52,15 +52,15 @@ class LecturesPlaylistsScreen extends StatelessWidget {
           toolbarOpacity: .9,
           elevation: 0.00,
           backgroundColor: Colors.grey[300],
-          actions: [
-            IconButton(
-                onPressed: () => {},
-                icon: const Icon(
-                  Icons.dark_mode_outlined,
-                  size: 28,
-                  color: Colors.black,
-                )),
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () => {},
+          //       icon: const Icon(
+          //         Icons.dark_mode_outlined,
+          //         size: 28,
+          //         color: Colors.black,
+          //       )),
+          // ],
         ),
         body: Query(
           options: QueryOptions(document: gql(lecturesPlaylistsQuery)),

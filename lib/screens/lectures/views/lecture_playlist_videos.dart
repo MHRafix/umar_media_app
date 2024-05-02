@@ -54,15 +54,15 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
           toolbarOpacity: .9,
           elevation: 0.00,
           backgroundColor: Colors.grey[300],
-          actions: [
-            IconButton(
-                onPressed: () => {},
-                icon: const Icon(
-                  Icons.dark_mode_outlined,
-                  size: 28,
-                  color: Colors.black,
-                )),
-          ],
+          // actions: [
+          //   IconButton(
+          //       onPressed: () => {},
+          //       icon: const Icon(
+          //         Icons.dark_mode_outlined,
+          //         size: 28,
+          //         color: Colors.black,
+          //       )),
+          // ],
         ),
         body: SafeArea(
             child: Query(
