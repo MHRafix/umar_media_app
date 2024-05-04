@@ -4,7 +4,8 @@ import 'package:ttp_app/screens/lectures/views/play_video.dart';
 
 class VideoCard extends StatelessWidget {
   final Map<String, dynamic> video;
-  const VideoCard({super.key, required this.video});
+  final String playlistId;
+  const VideoCard({super.key, required this.video, required this.playlistId});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,10 @@ class VideoCard extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) =>
-                  PlayVideoScreen(id: video["_id"], videoSrc: video["video"]),
+              builder: (context) => PlayVideoScreen(
+                  id: video["_id"],
+                  videoSrc: video["video"],
+                  playlistId: playlistId),
             ),
           );
         },

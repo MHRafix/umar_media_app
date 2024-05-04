@@ -3,23 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:ttp_app/screens/home/utils/dataModel.dart';
+import 'package:ttp_app/screens/lectures/components/lecture_playlist_videos/video-card.dart';
+import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
+import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 import 'package:ttp_app/widgets/common-widgets/skeletons/video-card-skeleton.dart';
 
 class PlayVideoScreen extends StatefulWidget {
   final String id;
   final String videoSrc;
-  const PlayVideoScreen({Key? key, required this.id, required this.videoSrc})
+  final String playlistId;
+  const PlayVideoScreen(
+      {Key? key,
+      required this.id,
+      required this.videoSrc,
+      required this.playlistId})
       : super(key: key);
 
   @override
   State<PlayVideoScreen> createState() =>
-      _PlayVideoScreenState(id: id, videoSrc: videoSrc);
+      _PlayVideoScreenState(id: id, videoSrc: videoSrc, playlistId: playlistId);
 }
 
 class _PlayVideoScreenState extends State<PlayVideoScreen> {
   final String id;
   final String videoSrc;
-  _PlayVideoScreenState({required this.id, required this.videoSrc});
+  final String playlistId;
+  _PlayVideoScreenState(
+      {required this.id, required this.videoSrc, required this.playlistId});
 
   late CachedVideoPlayerController _videoPlayerController,
       _videoPlayerController2,
@@ -67,6 +77,9 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
     super.dispose();
   }
 
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
+
   @override
   Widget build(BuildContext context) {
     String lectureVideoQuery =
@@ -83,6 +96,21 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   }
 }""";
 
+// videos query
+    String videosQuery =
+        """query Get_Lectures_Videos(\$input: LecturesVideosQueryWithPagination!){
+  lecturesVideos(input: \$input){
+  nodes{
+    _id
+    title
+    lecturer
+    video
+    thumbnail
+    likeCount
+    viewsCount
+    createdAt
+  }}
+}""";
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SafeArea(
@@ -163,15 +191,87 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                 ),
                               )),
                           Expanded(
-                              child: ListView.builder(
-                                  // shrinkWrap: true,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                                  itemCount: playlistVideos.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return _lectureVideoCard(
-                                        context, playlistVideos[index]);
+                              child: Query(
+                                  options: QueryOptions(
+                                      document: gql(
+                                        videosQuery,
+                                      ),
+                                      variables: {
+                                        "input": {
+                                          "where": {
+                                            "key": "playlist",
+                                            "operator": "eq",
+                                            "value": playlistId
+                                          }
+                                        }
+                                      }),
+                                  builder: (result,
+                                      {FetchMore? fetchMore,
+                                      VoidCallback? refetch}) {
+                                    if (result.hasException) {
+                                      print(
+                                          "Query Result: ${result.hasException}");
+                                    }
+
+                                    // store raw list
+                                    List data =
+                                        result.data?['lecturesVideos']["nodes"];
+
+                                    // filter list
+                                    List filteredData = data
+                                        .where(
+                                            (element) => element["_id"] != id)
+                                        .toList();
+
+                                    return result.isLoading
+                                        ? ListView.builder(
+                                            padding: const EdgeInsets.all(10),
+                                            itemCount: 12,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return const CardCommonSkeleton();
+                                            })
+                                        : RefreshIndicator(
+                                            triggerMode:
+                                                RefreshIndicatorTriggerMode
+                                                    .onEdge,
+                                            edgeOffset: 0,
+                                            displacement: 30,
+                                            key: _refreshIndicatorKey,
+                                            color: Colors.orange,
+                                            backgroundColor: Colors.black,
+                                            strokeWidth: 3.0,
+                                            onRefresh: () async {
+                                              // refetch query after refresh
+                                              refetch!();
+                                              return Future<void>.delayed(
+                                                  const Duration(seconds: 3));
+                                            },
+                                            // Pull from top to show refresh indicator.
+                                            child: filteredData.isEmpty &&
+                                                    !result.isLoading
+                                                ? const EmptyState(
+                                                    label: "I am empty :(",
+                                                    tagline:
+                                                        "You have no video")
+                                                : ListView.builder(
+                                                    // shrinkWrap: true,
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 5),
+                                                    itemCount:
+                                                        filteredData.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return VideoCard(
+                                                        video:
+                                                            filteredData[index],
+                                                        playlistId: playlistId,
+                                                      );
+                                                    }),
+                                          );
                                   }))
                         ],
                       );

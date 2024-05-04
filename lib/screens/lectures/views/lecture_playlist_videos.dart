@@ -110,7 +110,7 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                           child: data['nodes']?.length == 0 && !result.isLoading
                               ? const EmptyState(
                                   label: "I am empty :(",
-                                  tagline: "You have no lecture")
+                                  tagline: "You have no video")
                               : ListView.builder(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 0),
@@ -118,7 +118,8 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return VideoCard(
-                                        video: data['nodes'][index]);
+                                        video: data['nodes'][index],
+                                        playlistId: id);
                                   }),
                         );
                 })));
