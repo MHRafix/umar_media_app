@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/books/views/book_list.dart';
+import 'package:umar_media/screens/books/views/book_list.dart';
 
 class BookDepartmentCard extends StatelessWidget {
   final Map<String, dynamic> department;

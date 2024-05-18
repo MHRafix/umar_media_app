@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/lectures/views/lecture_playlist_videos.dart';
+import 'package:umar_media/screens/lectures/views/lecture_playlist_videos.dart';
 
 class PlaylistCard extends StatelessWidget {
   final Map<String, dynamic> playlist;

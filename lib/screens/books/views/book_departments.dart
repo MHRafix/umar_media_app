@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:ttp_app/screens/books/components/book-departments/book-department-card.dart';
-import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
-import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
+import 'package:umar_media/screens/books/components/book-departments/book-department-card.dart';
+import 'package:umar_media/widgets/common-widgets/empty-state/empty-state.dart';
+import 'package:umar_media/widgets/common-widgets/skeletons/card-common-skeleton.dart';
+// import 'package:ttp_app/screens/books/components/book-departments/book-department-card.dart';
+// import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
+// import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 
 class BooksScreen extends StatelessWidget {
   BooksScreen({super.key});

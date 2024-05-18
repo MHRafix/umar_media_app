@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ttp_app/app_view.dart';
-import 'package:ttp_app/utils/graphql_provider.dart';
+import 'package:umar_media/app_view.dart';
+import 'package:umar_media/utils/graphql_provider.dart';
+// import 'package:ttp_app/utils/graphql_provider.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

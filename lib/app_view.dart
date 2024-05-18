@@ -1,15 +1,7 @@
-/*
------------------------------------------------------------------------------
-        Author: Md Maruf Ahmed Robin
-        Title: Lead Mobile App Developer
-        Email: marufrobin00@gmail.com
-        GitHub: https://github.com/marufrobin
-        Website: https://marufrobin.com
------------------------------------------------------------------------------
-  */
-
 import 'package:flutter/material.dart';
-import 'package:ttp_app/routes/app_route_configuration.dart';
+import 'package:umar_media/routes/app_route_configuration.dart';
+
+// import 'package:ttp_app/routes/app_route_configuration.dart';
 
 import 'app_theme/theme_data.dart';
 

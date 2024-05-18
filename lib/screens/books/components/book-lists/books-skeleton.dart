@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
+import 'package:umar_media/widgets/common-widgets/shimmer-widgets.dart';
 
 class BookListSkeleton extends StatelessWidget {
   const BookListSkeleton({super.key});

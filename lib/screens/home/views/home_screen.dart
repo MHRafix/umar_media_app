@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/screens/home/utils/dataModel.dart';
+import 'package:umar_media/screens/home/utils/dataModel.dart';
+// import 'package:ttp_app/screens/home/utils/dataModel.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                 //   width: 5,
                 // ),
                 Text(
-                  "Ummah Media",
+                  "Umar Media",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 28,

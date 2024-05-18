@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
+import 'package:umar_media/widgets/common-widgets/shimmer-widgets.dart';
+// import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class VideoCardSkeleton extends StatelessWidget {
   const VideoCardSkeleton({super.key});

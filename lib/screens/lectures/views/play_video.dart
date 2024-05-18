@@ -2,11 +2,11 @@ import 'package:appinio_video_player/appinio_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:ttp_app/screens/home/utils/dataModel.dart';
-import 'package:ttp_app/screens/lectures/components/lecture_playlist_videos/video-card.dart';
-import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
-import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
-import 'package:ttp_app/widgets/common-widgets/skeletons/video-card-skeleton.dart';
+import 'package:umar_media/screens/home/utils/dataModel.dart';
+import 'package:umar_media/screens/lectures/components/lecture_playlist_videos/video-card.dart';
+import 'package:umar_media/widgets/common-widgets/empty-state/empty-state.dart';
+import 'package:umar_media/widgets/common-widgets/skeletons/card-common-skeleton.dart';
+import 'package:umar_media/widgets/common-widgets/skeletons/video-card-skeleton.dart';
 
 class PlayVideoScreen extends StatefulWidget {
   final String id;

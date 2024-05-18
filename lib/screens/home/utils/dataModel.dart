@@ -1,11 +1,11 @@
-import 'package:ttp_app/screens/books/views/book_departments.dart';
-import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
-import 'package:ttp_app/screens/history/views/history.dart';
-import 'package:ttp_app/screens/lectures/views/lectures_playlists.dart';
-import 'package:ttp_app/screens/news/views/news.dart';
-import 'package:ttp_app/screens/tafseer/views/tafseer.dart';
-import 'package:ttp_app/screens/talim/views/talim.dart';
-import 'package:ttp_app/screens/war/views/war.dart';
+import 'package:umar_media/screens/books/views/book_departments.dart';
+import 'package:umar_media/screens/fitnah/views/fitnah.dart';
+import 'package:umar_media/screens/history/views/history.dart';
+import 'package:umar_media/screens/lectures/views/lectures_playlists.dart';
+import 'package:umar_media/screens/news/views/news.dart';
+import 'package:umar_media/screens/tafseer/views/tafseer.dart';
+import 'package:umar_media/screens/talim/views/talim.dart';
+import 'package:umar_media/screens/war/views/war.dart';
 
 class HomeMenuData {
   String title;
@@ -17,33 +17,33 @@ class HomeMenuData {
 
 List homeMenu = [
   HomeMenuData(
-      title: "শেষ খবর",
+      title: "News",
       icon: "assets/images/news.png",
       screen: const NewsScreen()),
   HomeMenuData(
-      title: "তাফসীর",
+      title: "Tafseer",
       icon: "assets/images/tafseer.png",
       screen: const TafseerScreen()),
   HomeMenuData(
-      title: "বই সমূহ", icon: "assets/images/books.png", screen: BooksScreen()),
+      title: "Books", icon: "assets/images/books.png", screen: BooksScreen()),
   HomeMenuData(
-      title: "বক্তব্য সিরিজ",
+      title: "Lectures",
       icon: "assets/images/lecture.png",
       screen: LecturesPlaylistsScreen()),
   HomeMenuData(
-      title: "গেরিলা যুদ্ধ",
+      title: "Guerrilla",
       icon: "assets/images/war.png",
       screen: const WarScreen()),
   HomeMenuData(
-      title: "ইতিহাস",
+      title: "History",
       icon: "assets/images/history.png",
       screen: const HistoryScreen()),
   HomeMenuData(
-      title: "তালিম",
+      title: "Talim",
       icon: "assets/images/talim.png",
       screen: const TalimScreen()),
   HomeMenuData(
-      title: "ফিতনা",
+      title: "Fitnah",
       icon: "assets/images/fitnah.png",
       screen: const FitnahScreen()),
   // HomeMenuData(

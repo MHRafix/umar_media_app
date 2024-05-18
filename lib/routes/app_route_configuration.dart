@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ttp_app/app_view.dart';
-import 'package:ttp_app/routes/app_route_constant.dart';
-import 'package:ttp_app/screens/books/views/book_departments.dart';
-import 'package:ttp_app/screens/books/views/book_list.dart';
-import 'package:ttp_app/screens/fitnah/views/fitnah.dart';
-import 'package:ttp_app/screens/history/views/history.dart';
-import 'package:ttp_app/screens/home/views/home_screen.dart';
-import 'package:ttp_app/screens/lectures/views/lecture_playlist_videos.dart';
-import 'package:ttp_app/screens/lectures/views/lectures_playlists.dart';
-import 'package:ttp_app/screens/lectures/views/play_video.dart';
-import 'package:ttp_app/screens/news/views/news.dart';
-import 'package:ttp_app/screens/others/views/others.dart';
-import 'package:ttp_app/screens/tafseer/views/tafseer.dart';
-import 'package:ttp_app/screens/talim/views/talim.dart';
-import 'package:ttp_app/screens/war/views/war.dart';
+import 'package:umar_media/app_view.dart';
+import 'package:umar_media/routes/app_route_constant.dart';
+import 'package:umar_media/screens/books/views/book_departments.dart';
+import 'package:umar_media/screens/books/views/book_list.dart';
+import 'package:umar_media/screens/fitnah/views/fitnah.dart';
+import 'package:umar_media/screens/history/views/history.dart';
+import 'package:umar_media/screens/home/views/home_screen.dart';
+import 'package:umar_media/screens/lectures/views/lecture_playlist_videos.dart';
+import 'package:umar_media/screens/lectures/views/lectures_playlists.dart';
+import 'package:umar_media/screens/lectures/views/play_video.dart';
+import 'package:umar_media/screens/news/views/news.dart';
+import 'package:umar_media/screens/others/views/others.dart';
+import 'package:umar_media/screens/tafseer/views/tafseer.dart';
+import 'package:umar_media/screens/talim/views/talim.dart';
+import 'package:umar_media/screens/war/views/war.dart';
 
 class AppRouter {
   GoRouter goRouter = GoRouter(

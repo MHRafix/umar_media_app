@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ttp_app/screens/lectures/views/play_video.dart';
+import 'package:umar_media/screens/lectures/views/play_video.dart';
 
 class VideoCard extends StatelessWidget {
   final Map<String, dynamic> video;
