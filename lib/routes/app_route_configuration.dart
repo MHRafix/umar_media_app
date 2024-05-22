@@ -24,8 +24,7 @@ class AppRouter {
         GoRoute(
           path: "/",
           name: AppRouteConstants.kHomeScreen,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: HomeScreen()),
+          pageBuilder: (context, state) => MaterialPage(child: HomeScreen()),
         ),
         GoRoute(
           path: "/news",

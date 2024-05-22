@@ -26,7 +26,7 @@ class MyAppView extends StatelessWidget {
     return MaterialApp.router(
       // key: goRouteNavigatorStateKey,
       debugShowCheckedModeBanner: false,
-      title: 'Pakistan',
+      title: 'Umar Media',
       theme: themeData(context),
       routerConfig: appRouter.goRouter,
     );

@@ -35,7 +35,7 @@ ThemeData themeData(BuildContext context) {
             horizontal: MediaQuery.of(context).size.width * 0.2,
           ),
           elevation: 0,
-          backgroundColor: const Color(0xffF09424),
+          backgroundColor: const Color.fromRGBO(249, 3, 42, 1),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
     ),
