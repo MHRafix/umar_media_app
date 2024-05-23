@@ -6,7 +6,7 @@ import 'package:umar_media/screens/books/views/book_departments.dart';
 import 'package:umar_media/screens/books/views/book_list.dart';
 import 'package:umar_media/screens/fitnah/views/fitnah.dart';
 import 'package:umar_media/screens/history/views/history.dart';
-import 'package:umar_media/screens/home/views/home_screen.dart';
+import 'package:umar_media/screens/home/views/controll_screen.dart';
 import 'package:umar_media/screens/lectures/views/lecture_playlist_videos.dart';
 import 'package:umar_media/screens/lectures/views/lectures_playlists.dart';
 import 'package:umar_media/screens/lectures/views/play_video.dart';
@@ -24,7 +24,7 @@ class AppRouter {
         GoRoute(
           path: "/",
           name: AppRouteConstants.kHomeScreen,
-          pageBuilder: (context, state) => MaterialPage(child: HomeScreen()),
+          pageBuilder: (context, state) => MaterialPage(child: ControlScreen()),
         ),
         GoRoute(
           path: "/news",

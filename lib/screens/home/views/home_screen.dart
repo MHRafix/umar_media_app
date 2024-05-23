@@ -1,6 +1,3 @@
-// import 'package:ttp_app/screens/home/utils/dataModel.dart';
-
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_widget/flutter_carousel_widget.dart';
 
@@ -33,7 +30,7 @@ var slides = List.generate(
     title: 'Slide ${index + 1}',
     poster: posters[index],
     height: 200,
-    color: Colors.primaries[index % Colors.primaries.length],
+    color: Color.fromRGBO(3, 25, 59, 1),
   ),
 );
 
@@ -43,9 +40,9 @@ final List<Widget> sliders = slides
         item,
       ) =>
           Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 0),
         child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
           child: Container(
               color: item.color,
               width: double.infinity,
@@ -68,21 +65,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size deviceSize = MediaQuery.of(context).size;
-    var _bottomNavIndex = 0; //default index of a first screen
-
-    final iconList = <IconData>[
-      Icons.home,
-      Icons.play_circle,
-      Icons.newspaper,
-      Icons.account_circle_outlined,
-    ];
 
     return Scaffold(
-      backgroundColor: Color.fromRGBO(36, 37, 41, .7),
+      backgroundColor: Color(0x121544),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(55),
         child: AppBar(
-          backgroundColor: Colors.black,
+          backgroundColor: Color.fromRGBO(3, 25, 59, 1),
           // leading: Icon(Icons.menu), // Example of using Icon widget
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,12 +81,12 @@ class HomeScreen extends StatelessWidget {
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
-                    color: Color.fromRGBO(249, 3, 42, 1),
+                    color: Color.fromRGBO(127, 119, 255, 1),
                     letterSpacing: 2),
               ),
               IconButton.filled(
                   style: IconButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 3, 42, 1),
+                    backgroundColor: Color.fromRGBO(127, 119, 255, 1),
                   ),
                   onPressed: () => {},
                   icon: Icon(
@@ -147,7 +136,7 @@ class HomeScreen extends StatelessWidget {
                         maximumSize: const Size(85, 40),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 0),
-                        // backgroundColor: Colors.orange[100],
+                        // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -158,13 +147,13 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'See all',
-                            style:
-                                TextStyle(color: Color.fromRGBO(249, 3, 42, 1)),
+                            style: TextStyle(
+                                color: Color.fromRGBO(127, 119, 255, 1)),
                           ),
                           Icon(
                             Icons.arrow_forward,
                             size: 20,
-                            color: Color.fromRGBO(249, 3, 42, 1),
+                            color: Color.fromRGBO(127, 119, 255, 1),
                           )
                         ],
                       ),
@@ -186,7 +175,7 @@ class HomeScreen extends StatelessWidget {
                                 width: 280,
                                 margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
                                 decoration: BoxDecoration(
-                                  color: Color.fromRGBO(56, 57, 62, .6),
+                                  color: Color.fromRGBO(3, 25, 59, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
@@ -237,7 +226,7 @@ class HomeScreen extends StatelessWidget {
                                                     vertical: 5),
                                                 decoration: BoxDecoration(
                                                     color: Color.fromRGBO(
-                                                        249, 3, 42, 1),
+                                                        127, 119, 255, 1),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             20)),
@@ -277,7 +266,7 @@ class HomeScreen extends StatelessWidget {
                         maximumSize: const Size(85, 40),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 0),
-                        // backgroundColor: Colors.orange[100],
+                        // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -288,13 +277,13 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'See all',
-                            style:
-                                TextStyle(color: Color.fromRGBO(249, 3, 42, 1)),
+                            style: TextStyle(
+                                color: Color.fromRGBO(127, 119, 255, 1)),
                           ),
                           Icon(
                             Icons.arrow_forward,
                             size: 20,
-                            color: Color.fromRGBO(249, 3, 42, 1),
+                            color: Color.fromRGBO(127, 119, 255, 1),
                           )
                         ],
                       ),
@@ -324,15 +313,37 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(10),
                                           topRight: Radius.circular(10)),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/images/placeholder_image.png',
-                                        image:
-                                            "https://media.istockphoto.com/id/1368236367/photo/snipers-training-on-a-shooting-range-m4-ar-15-rifle-details-looking-over-the-shoulder-blue.webp?b=1&s=170667a&w=0&k=20&c=Kf2vSIuMl_eI5OiUWvABAhcmoDLhokN_DDyr0z5fMoM=",
-                                        width: 135,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                        placeholderFit: BoxFit.contain,
+                                      child: Stack(
+                                        children: [
+                                          FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/images/placeholder_image.png',
+                                            image:
+                                                "https://media.istockphoto.com/id/1368236367/photo/snipers-training-on-a-shooting-range-m4-ar-15-rifle-details-looking-over-the-shoulder-blue.webp?b=1&s=170667a&w=0&k=20&c=Kf2vSIuMl_eI5OiUWvABAhcmoDLhokN_DDyr0z5fMoM=",
+                                            width: 135,
+                                            height: 100,
+                                            fit: BoxFit.cover,
+                                            placeholderFit: BoxFit.contain,
+                                          ),
+                                          Positioned(
+                                            top:
+                                                30, // Adjust top position as needed
+                                            left:
+                                                45, // Adjust left position as needed
+
+                                            child: IconButton.filled(
+                                              onPressed: () {},
+                                              style: IconButton.styleFrom(
+                                                backgroundColor: Color.fromRGBO(
+                                                    127, 119, 255, 1),
+                                              ),
+                                              icon: Icon(
+                                                Icons.play_circle_fill,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                     SizedBox(
@@ -379,7 +390,7 @@ class HomeScreen extends StatelessWidget {
                         maximumSize: const Size(85, 40),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 0),
-                        // backgroundColor: Colors.orange[100],
+                        // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -390,13 +401,13 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Text(
                             'See all',
-                            style:
-                                TextStyle(color: Color.fromRGBO(249, 3, 42, 1)),
+                            style: TextStyle(
+                                color: Color.fromRGBO(127, 119, 255, 1)),
                           ),
                           Icon(
                             Icons.arrow_forward,
                             size: 20,
-                            color: Color.fromRGBO(249, 3, 42, 1),
+                            color: Color.fromRGBO(127, 119, 255, 1),
                           )
                         ],
                       ),
@@ -426,15 +437,37 @@ class HomeScreen extends StatelessWidget {
                                       borderRadius: const BorderRadius.only(
                                           topLeft: Radius.circular(10),
                                           topRight: Radius.circular(10)),
-                                      child: FadeInImage.assetNetwork(
-                                        placeholder:
-                                            'assets/images/placeholder_image.png',
-                                        image:
-                                            "https://i.ytimg.com/vi/B9y0zkYYzV4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgTihAMA8=&rs=AOn4CLBmYWCX-W1bqNauvlSyZh5FmidYYg",
-                                        width: 135,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                        placeholderFit: BoxFit.contain,
+                                      child: Stack(
+                                        children: [
+                                          FadeInImage.assetNetwork(
+                                            placeholder:
+                                                'assets/images/placeholder_image.png',
+                                            image:
+                                                "https://i.ytimg.com/vi/B9y0zkYYzV4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgTihAMA8=&rs=AOn4CLBmYWCX-W1bqNauvlSyZh5FmidYYg",
+                                            width: 135,
+                                            height: 100,
+                                            fit: BoxFit.cover,
+                                            placeholderFit: BoxFit.contain,
+                                          ),
+                                          Positioned(
+                                            top:
+                                                30, // Adjust top position as needed
+                                            left:
+                                                45, // Adjust left position as needed
+
+                                            child: IconButton.filled(
+                                              onPressed: () {},
+                                              style: IconButton.styleFrom(
+                                                backgroundColor: Color.fromRGBO(
+                                                    127, 119, 255, 1),
+                                              ),
+                                              icon: Icon(
+                                                Icons.play_circle_fill,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     ),
                                     SizedBox(
@@ -467,61 +500,6 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: AnimatedBottomNavigationBar(
-        icons: iconList,
-        activeIndex: _bottomNavIndex,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        backgroundColor: Color.fromRGBO(56, 57, 62, .6),
-        activeColor: Color.fromRGBO(249, 3, 42, 1),
-        inactiveColor: Color.fromRGBO(129, 129, 131, 1),
-        // leftCornerRadius: 32,
-        // rightCornerRadius: 32,
-        onTap: (index) => {},
-      ),
     );
-  }
-
-  // _moduleButton
-  Container _gridModuleBox(BuildContext context, dynamic menu) {
-    return Container(
-        // color: Colors.grey[200],
-        decoration: BoxDecoration(
-          color: Colors.grey[300],
-          borderRadius: BorderRadius.circular(10), // Set border radius here
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(10),
-          onTap: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => menu?.screen,
-              ),
-            );
-          },
-          child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    menu?.icon,
-                    // scale: 2,
-                    width: 60,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    menu?.title,
-                    style: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ],
-              )),
-        ));
   }
 }
