@@ -48,18 +48,18 @@ class VideoCard extends StatelessWidget {
                   Text(
                     video['title'],
                     style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      overflow: TextOverflow.clip,
-                    ),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        overflow: TextOverflow.clip,
+                        color: Colors.white),
                   ),
                   Text(
                     video['lecturer'],
                     style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      overflow: TextOverflow.clip,
-                    ),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        overflow: TextOverflow.clip,
+                        color: Colors.white70),
                   ),
                   Flex(
                     direction: Axis.horizontal,
@@ -70,7 +70,7 @@ class VideoCard extends StatelessWidget {
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: Colors.black45),
+                            color: Colors.white38),
                       ),
                       const SizedBox(
                         width: 7,
@@ -80,7 +80,7 @@ class VideoCard extends StatelessWidget {
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            color: Colors.black45),
+                            color: Colors.white38),
                       ),
                     ],
                   )

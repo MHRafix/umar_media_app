@@ -34,12 +34,12 @@ class EmptyState extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black)),
+                  color: Colors.white)),
           Text(tagline,
               style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Colors.grey)),
+                  color: Colors.white38)),
           const SizedBox(
             height: 10,
           ),
@@ -50,9 +50,9 @@ class EmptyState extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               maximumSize: const Size(150, 100),
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              backgroundColor: Colors.red,
+              backgroundColor: Color.fromRGBO(119, 110, 249, 1),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(5),
                 // Adjust the radius as needed
               ),
               // Adjust the size as per your requirement

@@ -33,20 +33,23 @@ class BookListScreen extends StatelessWidget {
 }""";
 
     return Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Color(0x121544),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
           title: Text(
             name,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 22,
             ),
@@ -57,7 +60,7 @@ class BookListScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Color.fromRGBO(3, 25, 59, 1),
           // actions: [
           //   IconButton(
           //       onPressed: () => {},
@@ -99,8 +102,8 @@ class BookListScreen extends StatelessWidget {
                     edgeOffset: 20,
                     displacement: 40,
                     key: _refreshIndicatorKey,
-                    color: Colors.orange,
-                    backgroundColor: Colors.black,
+                    color: Color.fromRGBO(119, 110, 249, 1),
+                    backgroundColor: Color.fromARGB(255, 5, 9, 63),
                     strokeWidth: 3.0,
                     onRefresh: () async {
                       // refetch query after refresh

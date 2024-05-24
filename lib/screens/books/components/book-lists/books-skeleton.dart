@@ -9,10 +9,10 @@ class BookListSkeleton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(0),
-          color: Colors.white70,
+          color: Color.fromRGBO(3, 25, 59, 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade200,
+              color: Color.fromRGBO(3, 25, 59, 1),
               offset: const Offset(
                 1.0,
                 1.0,

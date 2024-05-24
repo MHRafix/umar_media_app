@@ -19,7 +19,7 @@ class _ControlScreenState extends State<ControlScreen> {
     BooksScreen(),
     NewsScreen(),
     LecturesPlaylistsScreen(),
-    FitnahScreen()
+    FitnahScreen(),
   ];
   @override
   Widget build(BuildContext context) {

@@ -34,8 +34,8 @@ class ShimmerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[400]!,
+      baseColor: Color.fromRGBO(46, 46, 108, 1),
+      highlightColor: Color.fromRGBO(32, 32, 70, 1),
       child: Container(
         width: width,
         height: height,

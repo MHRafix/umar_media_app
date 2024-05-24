@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:umar_media/widgets/common-widgets/shimmer-widgets.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:umar_media/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 // import 'package:ttp_app/widgets/common-widgets/shimmer-widgets.dart';
 
 class VideoCardSkeleton extends StatelessWidget {
@@ -11,10 +12,10 @@ class VideoCardSkeleton extends StatelessWidget {
       // padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
           // borderRadius: BorderRadius.circular(20),
-          color: Colors.white70,
+          color: Color(0x121544),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade200,
+              color: Color(0x121544),
               offset: const Offset(
                 1.0,
                 1.0,
@@ -26,28 +27,49 @@ class VideoCardSkeleton extends StatelessWidget {
       // height: MediaQuery.of(context).size.height,
       alignment: Alignment.centerLeft,
 
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ShimmerWidget.videoCard(height: 280),
+          Shimmer.fromColors(
+              baseColor: Color.fromRGBO(3, 25, 59, 1),
+              highlightColor: Color.fromRGBO(6, 34, 75, 1),
+              child: Container(
+                height: 280,
+                decoration: ShapeDecoration(
+                    color: Colors.grey[400]!,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(0)))),
+              )),
           SizedBox(
             height: 8,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: ShimmerWidget.rectangular(
-              height: 60,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: Shimmer.fromColors(
+                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                child: Container(
+                  height: 60,
+                  decoration: ShapeDecoration(
+                      color: Colors.grey[400]!,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(0)))),
+                )),
           ),
           SizedBox(
             height: 8,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: ShimmerWidget.rectangular(
-              height: 370,
-            ),
-          ),
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Expanded(
+                  child: Column(
+                children: [
+                  CardCommonSkeleton(),
+                  CardCommonSkeleton(),
+                  CardCommonSkeleton(),
+                  CardCommonSkeleton(),
+                ],
+              ))),
         ],
       ),
     );

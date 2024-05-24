@@ -37,7 +37,7 @@ ThemeData themeData(BuildContext context) {
           elevation: 0,
           backgroundColor: const Color.fromRGBO(249, 3, 42, 1),
           shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
     ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: const Color(0xffF09424),

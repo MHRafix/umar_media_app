@@ -112,7 +112,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
   }}
 }""";
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Color(0x121544),
       body: SafeArea(
           child: Query(
               options:
@@ -134,8 +134,8 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                 _customVideoPlayerController,
                           ),
                           Container(
-                              decoration:
-                                  BoxDecoration(color: Colors.grey.shade200),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(3, 25, 59, 1)),
                               child: Padding(
                                 padding: const EdgeInsets.all(10),
                                 child: InkWell(
@@ -146,16 +146,16 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                       Text(
                                         data['title'],
                                         style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
                                       ),
                                       Text(
                                         data['lecturer'],
                                         style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white38),
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -170,7 +170,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w500,
-                                                color: Colors.black45),
+                                                color: Colors.white38),
                                           ),
                                           const SizedBox(
                                             width: 7,
@@ -182,7 +182,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                             style: const TextStyle(
                                                 fontSize: 12,
                                                 fontWeight: FontWeight.w500,
-                                                color: Colors.black45),
+                                                color: Colors.white38),
                                           ),
                                         ],
                                       ),
@@ -238,8 +238,10 @@ class _PlayVideoScreenState extends State<PlayVideoScreen> {
                                             edgeOffset: 0,
                                             displacement: 30,
                                             key: _refreshIndicatorKey,
-                                            color: Colors.orange,
-                                            backgroundColor: Colors.black,
+                                            color: Color.fromRGBO(
+                                                119, 110, 249, 1),
+                                            backgroundColor:
+                                                Color.fromARGB(255, 5, 9, 63),
                                             strokeWidth: 3.0,
                                             onRefresh: () async {
                                               // refetch query after refresh

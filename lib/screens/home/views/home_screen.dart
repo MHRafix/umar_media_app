@@ -19,13 +19,12 @@ List<String> posters = [
   "https://nypost.com/wp-content/uploads/sites/2/2021/10/afghanistan-taliban-kabul-4.jpg?quality=75&strip=all",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTba-YnREWS37nnJcLzdhitSX-oLPYkAW2I2Zzwutgy4w&s",
   "https://www.atlanticcouncil.org/wp-content/uploads/2017/08/20170818_IdlibalQaeda.jpg",
-  "https://archive-images.prod.global.a201836.reutersmedia.net/2017/01/26/LYNXMPED0P0GU.JPG",
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK8mK9tUJL8yoObZITvwLXNvryNvFyOyCHqNLCKo-8SA&s",
   "https://www.middleeasteye.net/sites/default/files/main-images/000_Nic6406079.jpg"
 ];
 
 var slides = List.generate(
-  6,
+  5,
   (index) => Slide(
     title: 'Slide ${index + 1}',
     poster: posters[index],
@@ -46,11 +45,11 @@ final List<Widget> sliders = slides
           child: Container(
               color: item.color,
               width: double.infinity,
-              height: 200,
+              height: 160,
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/placeholder_image.png',
                 image: item.poster,
-                height: 200,
+                height: 160,
                 fit: BoxFit.cover,
                 placeholderFit: BoxFit.contain,
               )),
@@ -72,7 +71,7 @@ class HomeScreen extends StatelessWidget {
         preferredSize: const Size.fromHeight(55),
         child: AppBar(
           backgroundColor: Color.fromRGBO(3, 25, 59, 1),
-          // leading: Icon(Icons.menu), // Example of using Icon widget
+          automaticallyImplyLeading: false, // Example of using Icon widget
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -110,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                     autoPlayInterval: const Duration(seconds: 5),
                     disableCenter: true,
                     viewportFraction: deviceSize.width > 800.0 ? 0.8 : 1.0,
-                    height: 200,
+                    height: 160,
                     indicatorMargin: 12.0,
                     enableInfiniteScroll: true,
                     slideIndicator: const CircularSlideIndicator(),
@@ -172,10 +171,10 @@ class HomeScreen extends StatelessWidget {
                       children: List.generate(
                           20,
                           (index) => Container(
-                                width: 280,
+                                width: 270,
                                 margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
                                 decoration: BoxDecoration(
-                                  color: Color.fromRGBO(3, 25, 59, 1),
+                                  // color: Color.fromRGBO(3, 25, 59, 1),
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
                                 ),
@@ -183,16 +182,15 @@ class HomeScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10)),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(10)),
                                       child: FadeInImage.assetNetwork(
                                         placeholder:
                                             'assets/images/placeholder_image.png',
                                         image:
                                             "https://images.unsplash.com/photo-1431440869543-efaf3388c585?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGFya3xlbnwwfHwwfHx8MA%3D%3D",
-                                        width: 280,
-                                        // height: 200,
+                                        width: 270,
+                                        height: 140,
                                         fit: BoxFit.cover,
                                         placeholderFit: BoxFit.contain,
                                       ),
@@ -206,11 +204,24 @@ class HomeScreen extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
+                                          SizedBox(
+                                            height: 5,
+                                          ),
                                           Text(
-                                            "Top 10 thing remember while working from home",
+                                            "Top 10 thing remember while",
                                             style: TextStyle(
-                                                fontSize: 15,
+                                                fontSize: 16,
                                                 fontWeight: FontWeight.w500,
+                                                color: Colors.white),
+                                          ),
+                                          SizedBox(
+                                            height: 2,
+                                          ),
+                                          Text(
+                                            "Lorem ispum dollar sit ammet and something or nothing but else and drawer hook...",
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
                                                 color: Colors.white),
                                           ),
                                           SizedBox(
@@ -222,14 +233,14 @@ class HomeScreen extends StatelessWidget {
                                             children: [
                                               Container(
                                                 padding: EdgeInsets.symmetric(
-                                                    horizontal: 15,
-                                                    vertical: 5),
+                                                    horizontal: 20,
+                                                    vertical: 4),
                                                 decoration: BoxDecoration(
                                                     color: Color.fromRGBO(
                                                         127, 119, 255, 1),
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            20)),
+                                                            5)),
                                                 child: Text("20 Feb 2015",
                                                     style: TextStyle(
                                                         color: Colors.white,

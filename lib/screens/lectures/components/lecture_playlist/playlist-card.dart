@@ -9,11 +9,11 @@ class PlaylistCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white70,
+          borderRadius: BorderRadius.circular(5),
+          color: Color.fromRGBO(3, 25, 59, 1),
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade200,
+              color: Color.fromRGBO(3, 25, 59, 1),
               offset: const Offset(
                 1.0,
                 1.0,
@@ -60,14 +60,16 @@ class PlaylistCard extends StatelessWidget {
                     Text(
                       playlist['name'],
                       style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.w500),
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white),
                     ),
                     Text(
                       "${playlist['lecturesCount'] ?? 0} lectures",
                       style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
-                          color: Colors.black45),
+                          color: Colors.white38),
                     ),
                   ],
                 ),

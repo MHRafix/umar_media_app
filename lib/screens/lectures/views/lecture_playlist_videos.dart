@@ -35,19 +35,22 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
 }""";
 
     return Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Color(0x121544),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             //replace with our own icon data.
           ),
           title: Text(
             name,
             style: const TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 22,
             ),
@@ -56,7 +59,7 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Color.fromRGBO(3, 25, 59, 1),
           // actions: [
           //   IconButton(
           //       onPressed: () => {},
@@ -100,8 +103,8 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
                           edgeOffset: 0,
                           displacement: 30,
                           key: _refreshIndicatorKey,
-                          color: Colors.orange,
-                          backgroundColor: Colors.black,
+                          color: Color.fromRGBO(119, 110, 249, 1),
+                          backgroundColor: Color.fromARGB(255, 5, 9, 63),
                           strokeWidth: 3.0,
                           onRefresh: () async {
                             // refetch query after refresh

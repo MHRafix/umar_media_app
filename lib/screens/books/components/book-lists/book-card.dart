@@ -9,7 +9,7 @@ class BookCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey[500]!, width: .1),
-        color: Colors.white70,
+        color: Color.fromRGBO(3, 25, 59, 1),
       ),
       height: 110,
       // color: Colors.grey[500],
@@ -53,14 +53,15 @@ class BookCard extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
-                              overflow: TextOverflow.ellipsis),
+                              overflow: TextOverflow.ellipsis,
+                              color: Colors.white),
                         ),
                         Text(
                           "${book['writer'].substring(0, 20)}",
                           style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w500,
-                              color: Colors.black45),
+                              color: Colors.white38),
                         ),
                         const SizedBox(
                           height: 5,
@@ -71,9 +72,9 @@ class BookCard extends StatelessWidget {
                             maximumSize: const Size(100, 50),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 15, vertical: 2),
-                            backgroundColor: Colors.orange,
+                            backgroundColor: Color.fromRGBO(119, 110, 249, 1),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(5),
                               // Adjust the radius as needed
                             ),
                             // Adjust the size as per your requirement
@@ -103,7 +104,7 @@ class BookCard extends StatelessWidget {
                     IconButton(
                       onPressed: () {},
                       style: IconButton.styleFrom(
-                          backgroundColor: Colors.grey[400]),
+                          backgroundColor: Color.fromRGBO(119, 110, 249, 1)),
                       icon: const Icon(
                         Icons.download_rounded,
                         color: Colors.white,

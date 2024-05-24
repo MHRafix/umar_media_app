@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:umar_media/screens/books/components/book-departments/book-department-card.dart';
+import 'package:umar_media/screens/home/views/controll_screen.dart';
 import 'package:umar_media/widgets/common-widgets/empty-state/empty-state.dart';
 import 'package:umar_media/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 // import 'package:ttp_app/screens/books/components/book-departments/book-department-card.dart';
@@ -28,20 +29,27 @@ class BooksScreen extends StatelessWidget {
 }""";
 
     return Scaffold(
-        backgroundColor: Colors.grey[100],
+        backgroundColor: Color(0x121544),
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ControlScreen(),
+                ),
+              );
             },
-            icon: const Icon(Icons.arrow_back),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             //replace with our own icon data.
           ),
           // automaticallyImplyLeading: true,
           title: const Text(
             "Book Departments",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 22,
             ),
@@ -52,7 +60,7 @@ class BooksScreen extends StatelessWidget {
           toolbarHeight: 60.2,
           toolbarOpacity: .9,
           elevation: 0.00,
-          backgroundColor: Colors.grey[300],
+          backgroundColor: Color.fromRGBO(3, 25, 59, 1),
           // actions: [
           //   IconButton(
           //       onPressed: () => {},
@@ -83,8 +91,8 @@ class BooksScreen extends StatelessWidget {
                     edgeOffset: 20,
                     displacement: 40,
                     key: _refreshIndicatorKey,
-                    color: Colors.orange,
-                    backgroundColor: Colors.black,
+                    color: Color.fromRGBO(119, 110, 249, 1),
+                    backgroundColor: Color.fromARGB(255, 5, 9, 63),
                     strokeWidth: 3.0,
                     onRefresh: () async {
                       // print("refreshed...");
