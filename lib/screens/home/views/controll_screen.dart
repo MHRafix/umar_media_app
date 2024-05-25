@@ -16,8 +16,8 @@ class _ControlScreenState extends State<ControlScreen> {
   int _currentIndex = 0;
   List<Widget> widgetList = [
     HomeScreen(),
-    BooksScreen(),
     NewsScreen(),
+    BooksScreen(),
     LecturesPlaylistsScreen(),
     FitnahScreen(),
   ];
@@ -43,9 +43,9 @@ class _ControlScreenState extends State<ControlScreen> {
 
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: "News"),
           BottomNavigationBarItem(
               icon: Icon(Icons.menu_book_rounded), label: "Books"),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: "News"),
           BottomNavigationBarItem(
               icon: Icon(Icons.video_library), label: "Lectures"),
           BottomNavigationBarItem(

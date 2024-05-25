@@ -29,8 +29,7 @@ class AppRouter {
         GoRoute(
           path: "/news",
           name: AppRouteConstants.kNewsScreen,
-          pageBuilder: (context, state) =>
-              const MaterialPage(child: NewsScreen()),
+          pageBuilder: (context, state) => MaterialPage(child: NewsScreen()),
         ),
         GoRoute(
           path: "/lectures",

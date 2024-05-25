@@ -17,9 +17,7 @@ class HomeMenuData {
 
 List homeMenu = [
   HomeMenuData(
-      title: "News",
-      icon: "assets/images/news.png",
-      screen: const NewsScreen()),
+      title: "News", icon: "assets/images/news.png", screen: NewsScreen()),
   HomeMenuData(
       title: "Tafseer",
       icon: "assets/images/tafseer.png",

@@ -56,20 +56,10 @@ class BooksScreen extends StatelessWidget {
           ),
 
           titleSpacing: 00.0,
-          // centerTitle: true,
           toolbarHeight: 60.2,
-          toolbarOpacity: .9,
+          toolbarOpacity: 1,
           elevation: 0.00,
           backgroundColor: Color.fromRGBO(3, 25, 59, 1),
-          // actions: [
-          //   IconButton(
-          //       onPressed: () => {},
-          //       icon: const Icon(
-          //         Icons.dark_mode_outlined,
-          //         size: 28,
-          //         color: Colors.black,
-          //       )),
-          // ],
         ),
         body: Query(
           options: QueryOptions(document: gql(bookDepartmentsQuery)),
