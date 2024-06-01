@@ -75,34 +75,34 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size deviceSize = MediaQuery.of(context).size;
 
-    String _allNewsQuery =
+    String _homeFeedDataQuery =
         """query Home_Feed_Data(\$newsPayload:NewsListQueryDto, \$nasheedPayload: LecturesVideosQueryWithPagination!){
-allNews(input: \$newsPayload){
-nodes{
-_id
-title
-description
-shortDescription
-video
-thumbnail
-likeCount
-createdAt
-}
-}
+    allNews(input: \$newsPayload){
+    nodes{
+    _id
+    title
+    description
+    shortDescription
+    video
+    thumbnail
+    likeCount
+    createdAt
+    }
+    }
 
-lecturesVideos(input: \$nasheedPayload){
-nodes{
-_id
-title
-lecturer
-video
-thumbnail
-likeCount
-viewsCount
-createdAt
-}}
-}
-""";
+    lecturesVideos(input: \$nasheedPayload){
+    nodes{
+    _id
+    title
+    lecturer
+    video
+    thumbnail
+    likeCount
+    viewsCount
+    createdAt
+    }}
+    }
+    """;
 
     return Scaffold(
         backgroundColor: Color(0x121544),
@@ -136,7 +136,8 @@ createdAt
           ),
         ),
         body: Query(
-            options: QueryOptions(document: gql(_allNewsQuery), variables: {
+            options:
+                QueryOptions(document: gql(_homeFeedDataQuery), variables: {
               "newsPayload": {
                 "page": 1,
                 "limit": 10,
@@ -176,7 +177,7 @@ createdAt
                         backgroundColor: Color.fromARGB(255, 5, 9, 63),
                         strokeWidth: 3.0,
                         onRefresh: () async {
-// print("refreshed...");
+                          // print("refreshed...");
                           refetch!();
                           return Future<void>.delayed(
                               const Duration(seconds: 3));
@@ -246,7 +247,7 @@ createdAt
                                                                 .symmetric(
                                                                 horizontal: 8,
                                                                 vertical: 0),
-// backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
+                                                        // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                                                         shape:
                                                             RoundedRectangleBorder(
@@ -308,7 +309,7 @@ createdAt
                                                                         0),
                                                                 decoration:
                                                                     BoxDecoration(
-// color: Color.fromRGBO(3, 25, 59, 1),
+                                                                  // color: Color.fromRGBO(3, 25, 59, 1),
                                                                   borderRadius:
                                                                       BorderRadius.all(
                                                                           Radius.circular(
@@ -445,7 +446,7 @@ createdAt
                                             maximumSize: const Size(85, 40),
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 8, vertical: 0),
-// backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
+                                            // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
@@ -633,7 +634,7 @@ createdAt
                                                           .symmetric(
                                                           horizontal: 8,
                                                           vertical: 0),
-// backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
+                                                      // backgroundColor: Color.fromRGBO(127, 119, 255, 1)[100],
 
                                                       shape:
                                                           RoundedRectangleBorder(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:umar_media/screens/home/components/skeleton/home_skeleton.dart';
 import 'package:umar_media/screens/home/views/controll_screen.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -9,6 +12,40 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _latestNewsQuery =
+        """query Latest_News(\$newsPayload:NewsListQueryDto){
+    allNews(input: \$newsPayload){
+    nodes{
+    _id
+    title
+    description
+    shortDescription
+    video
+    thumbnail
+    likeCount
+    createdAt
+    }
+    }
+    }
+    """;
+
+    String _recentNewsQuery =
+        """query Recent_News(\$newsPayload:NewsListQueryDto){
+    allNews(input: \$newsPayload){
+    nodes{
+    _id
+    title
+    description
+    shortDescription
+    video
+    thumbnail
+    likeCount
+    createdAt
+    }
+    }
+    }
+    """;
+
     return Scaffold(
         backgroundColor: Color(0x121544),
         appBar: AppBar(
@@ -43,19 +80,6 @@ class NewsScreen extends StatelessWidget {
           backgroundColor: Color.fromRGBO(3, 25, 59, 1),
         ),
         body: SafeArea(
-            child: RefreshIndicator(
-          triggerMode: RefreshIndicatorTriggerMode.onEdge,
-          edgeOffset: 20,
-          displacement: 40,
-          key: _refreshIndicatorKey,
-          color: Color.fromRGBO(119, 110, 249, 1),
-          backgroundColor: Color.fromARGB(255, 5, 9, 63),
-          strokeWidth: 3.0,
-          onRefresh: () async {
-            print("refreshed...");
-            // refetch!();
-            return Future<void>.delayed(const Duration(seconds: 3));
-          },
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: SingleChildScrollView(
@@ -82,105 +106,168 @@ class NewsScreen extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    clipBehavior: Clip.hardEdge,
-                    child: Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: Row(
-                        children: List.generate(
-                            20,
-                            (index) => Container(
-                                  width: 270,
-                                  margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                  decoration: BoxDecoration(
-                                    // color: Color.fromRGBO(3, 25, 59, 1),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(10)),
+                  Query(
+                      options: QueryOptions(
+                          document: gql(_latestNewsQuery),
+                          variables: {
+                            "newsPayload": {
+                              "page": 1,
+                              "limit": 5,
+                              "sort": "DESC",
+                              "sortBy": "_id"
+                            },
+                          }),
+                      builder: (result,
+                          {FetchMore? fetchMore, VoidCallback? refetch}) {
+                        if (result.hasException) {
+                          print("Query Result: ${result.hasException}");
+                        }
+
+                        // news data
+                        final allNewsPaginationData = result.data?['allNews'];
+                        final allNewsData = allNewsPaginationData?['nodes'];
+
+                        return result.isLoading
+                            ? HorizontalGridNewsSkeleton()
+                            : SingleChildScrollView(
+                                scrollDirection: Axis.horizontal,
+                                clipBehavior: Clip.hardEdge,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(0),
+                                  child: Row(
+                                    children: List.generate(
+                                        allNewsData?.length,
+                                        (index) => Container(
+                                              width: 270,
+                                              margin: EdgeInsets.fromLTRB(
+                                                  0, 0, 8, 0),
+                                              decoration: BoxDecoration(
+                                                // color: Color.fromRGBO(3, 25, 59, 1),
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                              ),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
+                                                    child: FadeInImage
+                                                        .assetNetwork(
+                                                      placeholder:
+                                                          'assets/images/placeholder_image.png',
+                                                      image: allNewsData?[index]
+                                                          ?['thumbnail'],
+                                                      width: 270,
+                                                      height: 140,
+                                                      fit: BoxFit.cover,
+                                                      placeholderFit:
+                                                          BoxFit.contain,
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Container(
+                                                    padding:
+                                                        EdgeInsets.fromLTRB(
+                                                            8, 0, 8, 8),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        SizedBox(
+                                                          height: 5,
+                                                        ),
+                                                        Text(
+                                                          allNewsData?[index]
+                                                              ?['title'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines:
+                                                              1, // Limit the number of lines before ellipsis
+                                                          style: TextStyle(
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 2,
+                                                        ),
+                                                        Text(
+                                                          allNewsData?[index]?[
+                                                              'shortDescription'],
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          maxLines:
+                                                              2, // Limit the number of lines before ellipsis
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                              color:
+                                                                  Colors.white),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 10,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Container(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          20,
+                                                                      vertical:
+                                                                          4),
+                                                              decoration: BoxDecoration(
+                                                                  color: Color
+                                                                      .fromRGBO(
+                                                                          127,
+                                                                          119,
+                                                                          255,
+                                                                          1),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              5)),
+                                                              child: Text(
+                                                                  DateFormat(
+                                                                          'd MMM yyyy')
+                                                                      .format(
+                                                                          DateTime.parse(allNewsData?[index]
+                                                                              ?[
+                                                                              'createdAt'])),
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .white,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400)),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(10)),
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder:
-                                              'assets/images/placeholder_image.png',
-                                          image:
-                                              "https://images.unsplash.com/photo-1431440869543-efaf3388c585?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGFya3xlbnwwfHwwfHx8MA%3D%3D",
-                                          width: 270,
-                                          height: 140,
-                                          fit: BoxFit.cover,
-                                          placeholderFit: BoxFit.contain,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Container(
-                                        padding:
-                                            EdgeInsets.fromLTRB(8, 0, 8, 8),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                              height: 5,
-                                            ),
-                                            Text(
-                                              "Top 10 thing remember while",
-                                              style: TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Colors.white),
-                                            ),
-                                            SizedBox(
-                                              height: 2,
-                                            ),
-                                            Text(
-                                              "Lorem ispum dollar sit ammet and something or nothing but else and drawer hook...",
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Colors.white),
-                                            ),
-                                            SizedBox(
-                                              height: 10,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 20,
-                                                      vertical: 4),
-                                                  decoration: BoxDecoration(
-                                                      color: Color.fromRGBO(
-                                                          127, 119, 255, 1),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5)),
-                                                  child: Text("20 Feb 2015",
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.w400)),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )),
-                      ),
-                    ),
-                  ),
+                                ),
+                              );
+                      }),
                   SizedBox(
                     height: 15,
                   ),
@@ -307,6 +394,6 @@ class NewsScreen extends StatelessWidget {
                   ),
                 ])),
           ),
-        )));
+        ));
   }
 }

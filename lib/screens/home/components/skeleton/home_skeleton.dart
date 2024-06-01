@@ -27,113 +27,7 @@ class HomeFeedSkeleton extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                clipBehavior: Clip.hardEdge,
-                child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: Row(
-                      children: List.generate(
-                          5,
-                          (index) => Container(
-                                width: 270,
-                                // height: 100,
-                                margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                                decoration: BoxDecoration(
-                                  // color: Color.fromRGBO(3, 25, 59, 1),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Shimmer.fromColors(
-                                        baseColor: Color.fromRGBO(3, 25, 59, 1),
-                                        highlightColor:
-                                            Color.fromRGBO(6, 34, 75, 1),
-                                        child: Container(
-                                          width: 270,
-                                          height: 140,
-                                          decoration: ShapeDecoration(
-                                              color: Colors.grey[400]!,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              10)))),
-                                        )),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Shimmer.fromColors(
-                                        baseColor: Color.fromRGBO(3, 25, 59, 1),
-                                        highlightColor:
-                                            Color.fromRGBO(6, 34, 75, 1),
-                                        child: Container(
-                                          width: 260,
-                                          height: 18,
-                                          decoration: ShapeDecoration(
-                                              color: Colors.grey[400]!,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)))),
-                                        )),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Shimmer.fromColors(
-                                        baseColor: Color.fromRGBO(3, 25, 59, 1),
-                                        highlightColor:
-                                            Color.fromRGBO(6, 34, 75, 1),
-                                        child: Container(
-                                          width: 230,
-                                          height: 10,
-                                          decoration: ShapeDecoration(
-                                              color: Colors.grey[400]!,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(3)))),
-                                        )),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Shimmer.fromColors(
-                                        baseColor: Color.fromRGBO(3, 25, 59, 1),
-                                        highlightColor:
-                                            Color.fromRGBO(6, 34, 75, 1),
-                                        child: Container(
-                                          width: 200,
-                                          height: 10,
-                                          decoration: ShapeDecoration(
-                                              color: Colors.grey[400]!,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(3)))),
-                                        )),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Shimmer.fromColors(
-                                        baseColor: Color.fromRGBO(3, 25, 59, 1),
-                                        highlightColor:
-                                            Color.fromRGBO(6, 34, 75, 1),
-                                        child: Container(
-                                          width: 140,
-                                          height: 30,
-                                          decoration: ShapeDecoration(
-                                              color: Colors.grey[400]!,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5)))),
-                                        )),
-                                  ],
-                                ),
-                              ))),
-                )),
+            HorizontalGridNewsSkeleton(),
             SizedBox(
               height: 25,
             ),
@@ -291,5 +185,110 @@ class HomeFeedSkeleton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class HorizontalGridNewsSkeleton extends StatelessWidget {
+  const HorizontalGridNewsSkeleton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        clipBehavior: Clip.hardEdge,
+        child: Padding(
+          padding: const EdgeInsets.all(0),
+          child: Row(
+              children: List.generate(
+                  5,
+                  (index) => Container(
+                        width: 270,
+                        // height: 100,
+                        margin: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                        decoration: BoxDecoration(
+                          // color: Color.fromRGBO(3, 25, 59, 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Shimmer.fromColors(
+                                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                                child: Container(
+                                  width: 270,
+                                  height: 140,
+                                  decoration: ShapeDecoration(
+                                      color: Colors.grey[400]!,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)))),
+                                )),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Shimmer.fromColors(
+                                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                                child: Container(
+                                  width: 260,
+                                  height: 18,
+                                  decoration: ShapeDecoration(
+                                      color: Colors.grey[400]!,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)))),
+                                )),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Shimmer.fromColors(
+                                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                                child: Container(
+                                  width: 230,
+                                  height: 10,
+                                  decoration: ShapeDecoration(
+                                      color: Colors.grey[400]!,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(3)))),
+                                )),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Shimmer.fromColors(
+                                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                                child: Container(
+                                  width: 200,
+                                  height: 10,
+                                  decoration: ShapeDecoration(
+                                      color: Colors.grey[400]!,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(3)))),
+                                )),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Shimmer.fromColors(
+                                baseColor: Color.fromRGBO(3, 25, 59, 1),
+                                highlightColor: Color.fromRGBO(6, 34, 75, 1),
+                                child: Container(
+                                  width: 140,
+                                  height: 30,
+                                  decoration: ShapeDecoration(
+                                      color: Colors.grey[400]!,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(5)))),
+                                )),
+                          ],
+                        ),
+                      ))),
+        ));
   }
 }
