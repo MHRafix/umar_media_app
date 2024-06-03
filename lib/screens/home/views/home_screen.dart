@@ -30,40 +30,40 @@ List<String> posters = [
   "https://www.middleeasteye.net/sites/default/files/main-images/000_Nic6406079.jpg"
 ];
 
-var slides = List.generate(
-  5,
-  (index) => Slide(
-    title: 'Slide ${index + 1}',
-    poster: posters[index],
-    height: 200,
-    color: Color.fromRGBO(3, 25, 59, 1),
-  ),
-);
+// var slides = List.generate(
+//   5,
+//   (index) => Slide(
+//     title: 'Slide ${index + 1}',
+//     poster: posters[index],
+//     height: 200,
+//     color: Color.fromRGBO(3, 25, 59, 1),
+//   ),
+// );
 
-final List<Widget> sliders = slides
-    .map(
-      (
-        item,
-      ) =>
-          Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 0),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          child: Container(
-              color: item.color,
-              width: double.infinity,
-              height: 160,
-              child: FadeInImage.assetNetwork(
-                placeholder: 'assets/images/placeholder_image.png',
-                image: item.poster,
-                height: 160,
-                fit: BoxFit.cover,
-                placeholderFit: BoxFit.contain,
-              )),
-        ),
-      ),
-    )
-    .toList();
+// final List<Widget> sliders = slides
+//     .map(
+//       (
+//         item,
+//       ) =>
+//           Padding(
+//         padding: const EdgeInsets.symmetric(horizontal: 0),
+//         child: ClipRRect(
+//           borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+//           child: Container(
+//               color: Color.fromRGBO(3, 25, 59, 1),
+//               width: double.infinity,
+//               height: 160,
+//               child: FadeInImage.assetNetwork(
+//                 placeholder: 'assets/images/placeholder_image.png',
+//                 image: item.poster,
+//                 height: 160,
+//                 fit: BoxFit.cover,
+//                 placeholderFit: BoxFit.contain,
+//               )),
+//         ),
+//       ),
+//     )
+//     .toList();
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -76,7 +76,17 @@ class HomeScreen extends StatelessWidget {
     final Size deviceSize = MediaQuery.of(context).size;
 
     String _homeFeedDataQuery =
-        """query Home_Feed_Data(\$newsPayload:NewsListQueryDto, \$nasheedPayload: LecturesVideosQueryWithPagination!){
+        """query Home_Feed_Data(\$postersPayload:PostersListQueryDto, \$newsPayload:NewsListQueryDto, \$nasheedPayload: LecturesVideosQueryWithPagination!){
+
+    allPosters(input: \$postersPayload) {
+      nodes {
+        _id
+        title
+        href
+        thumbnail
+      }
+    }
+
     allNews(input: \$newsPayload){
     nodes{
     _id
@@ -157,6 +167,11 @@ class HomeScreen extends StatelessWidget {
                 print("Query Result: ${result.hasException}");
               }
 
+              // posters data
+              final allPostersPaginationData = result.data?['allPosters'];
+              final allPostersData = allPostersPaginationData?['nodes'];
+              print(allPostersData);
+
               // news data
               final allNewsPaginationData = result.data?['allNews'];
               final allNewsData = allNewsPaginationData?['nodes'];
@@ -204,7 +219,32 @@ class HomeScreen extends StatelessWidget {
                                   slideIndicator:
                                       const CircularSlideIndicator(),
                                 ),
-                                items: sliders,
+                                items: List.generate(
+                                  allPostersData?.length,
+                                  (index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 0),
+                                      child: ClipRRect(
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        child: Container(
+                                            color: Color.fromRGBO(3, 25, 59, 1),
+                                            width: double.infinity,
+                                            height: 160,
+                                            child: FadeInImage.assetNetwork(
+                                              placeholder:
+                                                  'assets/images/placeholder_image.png',
+                                              image: allPostersData[index]
+                                                  ["thumbnail"],
+                                              height: 160,
+                                              fit: BoxFit.cover,
+                                              placeholderFit: BoxFit.contain,
+                                            )),
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: 5,
