@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:umar_media/screens/books/views/book_departments.dart';
-import 'package:umar_media/screens/fitnah/views/fitnah.dart';
 import 'package:umar_media/screens/home/views/home_screen.dart';
 import 'package:umar_media/screens/lectures/views/lectures_playlists.dart';
 import 'package:umar_media/screens/news/views/news.dart';
+import 'package:umar_media/screens/settings/views/settings.dart';
 
 class ControlScreen extends StatefulWidget {
   const ControlScreen({super.key});
@@ -19,7 +19,7 @@ class _ControlScreenState extends State<ControlScreen> {
     NewsScreen(),
     BooksScreen(),
     LecturesPlaylistsScreen(),
-    FitnahScreen(),
+    SettingsScreen(),
   ];
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,3 @@
-import 'package:umar_media/screens/books/views/book_departments.dart';
-import 'package:umar_media/screens/fitnah/views/fitnah.dart';
-import 'package:umar_media/screens/history/views/history.dart';
-import 'package:umar_media/screens/lectures/views/lectures_playlists.dart';
-import 'package:umar_media/screens/news/views/news.dart';
-import 'package:umar_media/screens/tafseer/views/tafseer.dart';
-import 'package:umar_media/screens/talim/views/talim.dart';
-import 'package:umar_media/screens/war/views/war.dart';
-
 class HomeMenuData {
   String title;
   String icon;
@@ -14,41 +5,6 @@ class HomeMenuData {
 
   HomeMenuData({required this.title, required this.icon, required this.screen});
 }
-
-List homeMenu = [
-  HomeMenuData(
-      title: "News", icon: "assets/images/news.png", screen: NewsScreen()),
-  HomeMenuData(
-      title: "Tafseer",
-      icon: "assets/images/tafseer.png",
-      screen: const TafseerScreen()),
-  HomeMenuData(
-      title: "Books", icon: "assets/images/books.png", screen: BooksScreen()),
-  HomeMenuData(
-      title: "Lectures",
-      icon: "assets/images/lecture.png",
-      screen: LecturesPlaylistsScreen()),
-  HomeMenuData(
-      title: "Guerrilla",
-      icon: "assets/images/war.png",
-      screen: const WarScreen()),
-  HomeMenuData(
-      title: "History",
-      icon: "assets/images/history.png",
-      screen: const HistoryScreen()),
-  HomeMenuData(
-      title: "Talim",
-      icon: "assets/images/talim.png",
-      screen: const TalimScreen()),
-  HomeMenuData(
-      title: "Fitnah",
-      icon: "assets/images/fitnah.png",
-      screen: const FitnahScreen()),
-  // HomeMenuData(
-  //     title: "অন্যান্য",
-  //     icon: "assets/images/others.png",
-  //     screen: const OthersScreen()),
-];
 
 // playlist fake data
 class PlaylistDataModel {

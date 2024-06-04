@@ -3,9 +3,6 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:umar_media/screens/lectures/components/lecture_playlist_videos/video-card.dart';
 import 'package:umar_media/widgets/common-widgets/empty-state/empty-state.dart';
 import 'package:umar_media/widgets/common-widgets/skeletons/card-common-skeleton.dart';
-// import 'package:ttp_app/screens/lectures/components/lecture_playlist_videos/video-card.dart';
-// import 'package:ttp_app/widgets/common-widgets/empty-state/empty-state.dart';
-// import 'package:ttp_app/widgets/common-widgets/skeletons/card-common-skeleton.dart';
 
 class LecturePlaylistVideosScreen extends StatelessWidget {
   final String id;
@@ -60,15 +57,6 @@ class LecturePlaylistVideosScreen extends StatelessWidget {
           toolbarOpacity: .9,
           elevation: 0.00,
           backgroundColor: Color.fromRGBO(3, 25, 59, 1),
-          // actions: [
-          //   IconButton(
-          //       onPressed: () => {},
-          //       icon: const Icon(
-          //         Icons.dark_mode_outlined,
-          //         size: 28,
-          //         color: Colors.black,
-          //       )),
-          // ],
         ),
         body: SafeArea(
             child: Query(

@@ -43,7 +43,7 @@ class LecturesPlaylistsScreen extends StatelessWidget {
           ),
           // automaticallyImplyLeading: true,
           title: const Text(
-            "Lecture Playlists",
+            "Video Playlists",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
